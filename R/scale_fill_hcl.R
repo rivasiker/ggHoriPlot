@@ -8,6 +8,9 @@ hcl_generic <- function(reverse, palette, ...) {
   }
 }
 
+#' Add together two numbers
+#' @export
+
 scale_fill_hcl <- function(reverse = FALSE, palette = "RdYlBu", ...) {
 
   pal <- hcl_generic(reverse, palette)
