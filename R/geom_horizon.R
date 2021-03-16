@@ -40,10 +40,7 @@ geom_horizon <- function(mapping = NULL, data = NULL,
 GeomHorizon <- ggproto("GeomHorizon", GeomRibbon,
                        default_aes = aes(colour = NA, fill = NA,
                                          size = 0.5, linetype = 1,
-                                         alpha = NA,
-                                         origin = 'midpoint',
-                                         horizonscale = 6,
-                                         rm.outliers = FALSE)
+                                         alpha = NA)
 )
 
 
