@@ -1,6 +1,5 @@
 
 #' @rdname geom_horizon
-#' @keywords internal
 #' @export
 
 
