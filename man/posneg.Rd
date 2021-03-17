@@ -2,10 +2,12 @@
 % Please edit documentation in R/posneg.R
 \name{posneg}
 \alias{posneg}
-\title{Add together two numbers}
+\title{Internal function}
 \usage{
 posneg(y, origin, vec)
 }
 \description{
-Add together two numbers
+This function calculates the different positive and negative boundaries for each data point
+based on the origin and the cutpoint vector provided.
 }
+\keyword{internal}

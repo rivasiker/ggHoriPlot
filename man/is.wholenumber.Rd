@@ -2,10 +2,16 @@
 % Please edit documentation in R/build_horizon_df_2.R
 \name{is.wholenumber}
 \alias{is.wholenumber}
-\title{Add together two numbers}
+\title{Check if a variable is a whole number}
 \usage{
 is.wholenumber(x, tol = .Machine$double.eps^0.5)
 }
-\description{
-Add together two numbers
+\arguments{
+\item{x}{A number.}
+
+\item{tol}{Toleration threshold.}
 }
+\description{
+Check if a variable is a whole number
+}
+\keyword{internal}

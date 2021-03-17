@@ -2,10 +2,11 @@
 % Please edit documentation in R/scale_fill_hcl.R
 \name{hcl_generic}
 \alias{hcl_generic}
-\title{Add together two numbers}
+\title{General color function}
 \usage{
 hcl_generic(reverse, palette, ...)
 }
 \description{
-Add together two numbers
+General color function
 }
+\keyword{internal}

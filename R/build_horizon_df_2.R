@@ -1,11 +1,33 @@
 
-#' Add together two numbers
+
+utils::globalVariables(c("ymin", "ymax", "fill", "y", "outlier", "x", "group",
+                         "xend", "value"))
+
+
+#' Check if a variable is a whole number
 #'
-#' @import ggplot2
-#' @export
+#' @param x A number.
+#' @param tol Toleration threshold.
+#'
+#' @keywords internal
 
 is.wholenumber <-
   function(x, tol = .Machine$double.eps^0.5)  abs(x - round(x)) < tol
+
+#' Compute group for stat_horizon
+#'
+#' @param data A data frame.
+#' @inheritParams geom_horizon
+#'
+#' @import dplyr
+#' @import tidyr
+#' @importFrom magrittr '%>%'
+#' @import stringr
+#' @importFrom grDevices hcl.colors
+#' @importFrom stats IQR median quantile setNames
+#' @keywords internal
+
+
 
 build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse) {
 

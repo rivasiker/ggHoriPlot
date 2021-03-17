@@ -1,8 +1,4 @@
 
-
-
-
-
 #' @rdname geom_horizon
 #' @keywords internal
 #' @export
@@ -33,6 +29,8 @@ stat_horizon <- function(mapping = NULL, data = NULL,
   )
 }
 
+
+#' @noRd
 
 StatHorizon <- ggproto("StatHorizon", Stat,
 

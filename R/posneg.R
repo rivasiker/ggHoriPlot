@@ -1,9 +1,12 @@
 
-#' Add together two numbers
-#' @export
+#' Internal function
+#'
+#' This function calculates the different positive and negative boundaries for each data point
+#' based on the origin and the cutpoint vector provided.
+#'
+#' @keywords internal
 
-# This function calculates the different positive and negative boundaries for each data point
-# based on the origin and the cutpoint vector provided.
+
 posneg <- function(y, origin, vec) {
 
   tab <- list()

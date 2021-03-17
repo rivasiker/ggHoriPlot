@@ -12,11 +12,7 @@ geom_horizon(
   ...,
   na.rm = FALSE,
   show.legend = TRUE,
-  inherit.aes = TRUE,
-  origin = "midpoint",
-  horizonscale = 6,
-  rm.outliers = FALSE,
-  reverse = FALSE
+  inherit.aes = TRUE
 )
 
 stat_horizon(
@@ -77,6 +73,8 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
+\item{geom}{The geometric object to use display the data}
+
 \item{origin}{Origin of the horizon plot. It can either be a string, namely \code{"midpoint"} (the default), \code{"median"},
 \code{"mean"}, \code{"min"} or \code{"quantiles"}, or a user-specified number.}
 
@@ -87,8 +85,6 @@ or a user-supplied numeric vector with the cutpoints defining the different rang
 \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint calculations (default is \code{FALSE}).}
 
 \item{reverse}{If \code{TRUE}, the horizon peaks for the values below the origin are reversed (default is \code{FALSE}).}
-
-\item{geom}{The geometric object to use display the data}
 }
 \description{
 This is a horizon plot
@@ -129,10 +125,9 @@ ggplot(huron) +
 
 # Reverse negative ranges
 ggplot(huron) +
-  geom_horizon(aes(year, level, fill = ..Cutpoints..), reverse = T) +
+  geom_horizon(aes(year, level, fill = ..Cutpoints..), reverse = TRUE) +
   theme_void() +
   scale_fill_hcl()
-
 
 
 }
