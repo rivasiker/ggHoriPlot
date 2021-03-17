@@ -1,8 +1,12 @@
 
-#' Add together two numbers
-#'
-#' @import ggplot2
+
+
+
+
+#' @rdname geom_horizon
+#' @keywords internal
 #' @export
+
 
 
 stat_horizon <- function(mapping = NULL, data = NULL,
@@ -29,10 +33,6 @@ stat_horizon <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' Add together two numbers
-#'
-#' @import ggplot2
-#' @export
 
 StatHorizon <- ggproto("StatHorizon", Stat,
 
