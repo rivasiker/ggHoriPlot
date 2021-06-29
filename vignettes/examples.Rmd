@@ -1,0 +1,199 @@
+---
+title: "gghorizon examples"
+author: "Iker Rivas-González"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gghorizon examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r loading, message=FALSE}
+
+library(tidyverse)
+library(ggthemes)
+library(gghorizon)
+
+```
+
+
+https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv
+https://eagereyes.org/blog/2017/joy-plots
+
+```{r sports_leisure}
+
+
+load('../data/sports_time.RData')
+
+sports_time %>% ggplot() +
+  geom_horizon(aes(time/60, p), origin = 'min', horizonscale = 4) +
+  facet_wrap(~activity, ncol = 1, strip.position = 'right') +
+  scale_fill_hcl(palette = 'Peach', reverse = T) +
+  theme_few() +
+  theme(
+    panel.spacing.y=unit(0, "lines"),
+    strip.text.y = element_text(angle = 0),
+    legend.position = 'none',
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.border = element_blank()
+    ) +
+  scale_x_continuous(
+    name = 'Time',
+    breaks=seq(from = 3, to = 27, by = 3),
+    labels = function(x) {sprintf("%02d:00", as.integer(x %% 24))}) +
+  ggtitle('Peak time of day for sports and leisure')
+
+```
+
+https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
+
+```{r covid_19}
+
+load('../data/COVID.RData')
+
+
+COVID %>%  
+  ggplot() +
+  geom_horizon(aes(date_mine, 
+                   y), origin = 'min', horizonscale = 4) +
+  scale_fill_hcl(palette = 'BluGrn', reverse = T) +
+  facet_grid(countriesAndTerritories~.) +
+  theme_few() +
+  theme(
+    panel.spacing.y=unit(0, "lines"),
+    strip.text.y = element_text(size = 7, angle = 0, hjust = 0),
+    legend.position = 'none',
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.border = element_blank()
+    ) +
+  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") +
+  ggtitle('Cumulative number for 14 days of COVID-19 cases per 100,000', 
+          'in Asia, 2020') +
+  xlab('Date')
+
+```
+
+
+
+
+```{r repeats}
+
+load('../data/rmsk.RData')
+
+cutpoint_tab <- rmsk %>% 
+  ungroup() %>% 
+      mutate(
+        outlier = between(
+          p_repeat, 
+          quantile(p_repeat, 0.25, na.rm=T)-1.5*IQR(p_repeat, na.rm=T),
+          quantile(p_repeat, 0.75, na.rm=T)+1.5*IQR(p_repeat, na.rm=T))) %>% 
+  filter(outlier)
+ori <- sum(range(cutpoint_tab$p_repeat, na.rm = T))/2
+sca <- seq(range(cutpoint_tab$p_repeat)[1], 
+           range(cutpoint_tab$p_repeat)[2],
+           length.out = 6)
+  
+rmsk %>%  
+  ggplot() +
+  geom_horizon(aes(x = bin, xend=bin_2,  y = p_repeat, fill = ..Cutpoints..), 
+               origin = ori, horizonscale = sca) +
+  facet_grid(genoName~., switch = 'y') +
+  theme_few() +
+    theme(
+      panel.spacing.y=unit(0, "lines"),
+      strip.text.y.left = element_text(size = 7, angle = 0, hjust = 1),
+      legend.position = c(0.85, 0.4),
+      axis.text.y = element_blank(),
+      axis.title.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      panel.border = element_blank()
+      ) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_fill_hcl() +
+  ggtitle('Simple repeat content along the human genome', 
+          'in 100 kb windows') +
+  xlab('Position') +
+  guides(fill=guide_legend(title="% of repeats"))
+
+```
+
+
+https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities
+
+
+
+Ordering of states taken from https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/
+
+```{r fig.height=15, fig.width=6}
+
+library(ggh4x)
+
+load('../data/climate_US.RData')
+
+climate_US %>% 
+  ggplot() +
+  geom_horizon(aes(date_mine, 
+                   AvgTemperature), rm.outliers = T) +
+  scale_fill_hcl(palette = 'RdBu', reverse = T) +
+  facet_nested(State+City~.) +
+  theme_bw() +
+  theme(
+    panel.spacing.y=unit(0, "lines"),
+    strip.text.y = element_text(size = 4, angle = 0),
+    legend.position = 'none',
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.border = element_blank(),panel.grid = element_blank()
+    ) +
+  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") 
+
+
+```
+
+
+```{r}
+
+load('../data/climate_CPH.RData')
+
+cutpoints <- climate_CPH  %>% 
+  mutate(
+    outlier = between(
+      AvgTemperature, 
+      quantile(AvgTemperature, 0.25, na.rm=T)-1.5*IQR(AvgTemperature, na.rm=T),
+      quantile(AvgTemperature, 0.75, na.rm=T)+1.5*IQR(AvgTemperature, na.rm=T))) %>% 
+  filter(outlier)
+
+ori = sum(range(cutpoints$AvgTemperature))/2
+sca <- seq(range(cutpoints$AvgTemperature)[1], range(cutpoints$AvgTemperature)[2], length.out = 7)[-4]
+  
+
+climate_CPH %>% ggplot() +
+  geom_horizon(aes(date_mine, 
+                   AvgTemperature,
+                   fill = ..Cutpoints..), 
+               origin = ori, horizonscale = sca) +
+  scale_fill_hcl(palette = 'RdBu', reverse = T) +
+  facet_grid(Year~.) +
+  theme_few() +
+  theme(
+    panel.spacing.y=unit(0, "lines"),
+    strip.text.y = element_text(size = 7, angle = 0, hjust = 0),
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.border = element_blank()
+    ) +
+  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") 
+
+```
+
+
+
+
+
