@@ -1,11 +1,10 @@
 Package: gghorizon
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Horizon Plots For ggplot2
 Version: 0.1.0
 Author: Iker Rivas-González
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: Iker Rivas-González <ikerrivas96@gmail.com>
+Description: Building horizon plots in ggplot2.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -18,3 +17,5 @@ Imports:
     dplyr,
     magrittr,
     stringr
+Suggests:
+    ggh4x

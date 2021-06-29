@@ -25,6 +25,6 @@ A data frame with 9,132 rows and 9 variables:
 climate_CPH
 }
 \description{
-A dataset containing the average temperature in Celsius for Copenhagen between the year 1995 and 2019.
+A dataset containing the average temperature in degrees Celsius for Copenhagen between the year 1995 and 2019.
 }
 \keyword{datasets}
