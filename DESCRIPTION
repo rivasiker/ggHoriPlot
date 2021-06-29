@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: Iker Rivas-González
 Maintainer: Iker Rivas-González <ikerrivas96@gmail.com>
 Description: Building horizon plots in ggplot2.
-License: What license is it under?
+URL: https://rivasiker.github.io/gghorizon/, https://github.com/rivasiker/gghorizon
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9001
