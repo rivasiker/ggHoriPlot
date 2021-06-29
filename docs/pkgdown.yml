@@ -1,0 +1,8 @@
+pandoc: 2.14.0.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  examples: examples.html
+  gghorizon: gghorizon.html
+last_built: 2021-06-29T10:35Z
+
