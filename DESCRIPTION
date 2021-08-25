@@ -17,6 +17,7 @@ Imports:
     tidyr,
     dplyr,
     magrittr,
-    stringr
+    stringr,
+    rlang
 Suggests:
     ggh4x
