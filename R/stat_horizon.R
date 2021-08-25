@@ -13,7 +13,8 @@ stat_horizon <- function(mapping = NULL, data = NULL,
                          origin = 'midpoint',
                          horizonscale = 6,
                          rm.outliers = FALSE,
-                         reverse = FALSE
+                         reverse = FALSE,
+                         mirror = FALSE
                          ) {
   layer(
     stat = StatHorizon, data = data, mapping = mapping, geom = geom,
@@ -24,6 +25,7 @@ stat_horizon <- function(mapping = NULL, data = NULL,
       horizonscale = horizonscale,
       rm.outliers = rm.outliers,
       reverse = reverse,
+      mirror = mirror,
       ...)
   )
 }
@@ -36,8 +38,9 @@ StatHorizon <- ggproto("StatHorizon", Stat,
                                                 origin = 'midpoint',
                                                 horizonscale = 6,
                                                 rm.outliers = FALSE,
-                                                reverse = FALSE) {
-                         build_horizon_df_2(data, origin, horizonscale, rm.outliers, reverse)
+                                                reverse = FALSE,
+                                                mirror = FALSE) {
+                         build_horizon_df_2(data, origin, horizonscale, rm.outliers, reverse, mirror)
                        },
                        compute_layer = function (self, data, params, layout)
                        {

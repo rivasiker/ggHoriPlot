@@ -25,6 +25,7 @@
 #' @param rm.outliers If \code{TRUE}, all the values below \code{quantile(y, 0.25)-1.5*IQR(y)} and above
 #' \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint calculations (default is \code{FALSE}).
 #' @param reverse If \code{TRUE}, the horizon peaks for the values below the origin are reversed (default is \code{FALSE}).
+#' @param mirror If \code{TRUE}, the horizon peaks for all the values are reversed (default is \code{FALSE}).
 #'
 #' @examples
 #' # Generate data

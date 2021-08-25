@@ -27,7 +27,8 @@ stat_horizon(
   origin = "midpoint",
   horizonscale = 6,
   rm.outliers = FALSE,
-  reverse = FALSE
+  reverse = FALSE,
+  mirror = FALSE
 )
 }
 \arguments{
@@ -85,6 +86,8 @@ or a user-supplied numeric vector with the cutpoints defining the different rang
 \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint calculations (default is \code{FALSE}).}
 
 \item{reverse}{If \code{TRUE}, the horizon peaks for the values below the origin are reversed (default is \code{FALSE}).}
+
+\item{mirror}{If \code{TRUE}, the horizon peaks for all the values are reversed (default is \code{FALSE}).}
 }
 \description{
 This is a horizon plot

@@ -4,7 +4,7 @@
 \alias{build_horizon_df_2}
 \title{Compute group for stat_horizon}
 \usage{
-build_horizon_df_2(data, origin, horizonscale, rm.outliers, reverse)
+build_horizon_df_2(data, origin, horizonscale, rm.outliers, reverse, mirror)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -19,6 +19,8 @@ or a user-supplied numeric vector with the cutpoints defining the different rang
 \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint calculations (default is \code{FALSE}).}
 
 \item{reverse}{If \code{TRUE}, the horizon peaks for the values below the origin are reversed (default is \code{FALSE}).}
+
+\item{mirror}{If \code{TRUE}, the horizon peaks for all the values are reversed (default is \code{FALSE}).}
 }
 \description{
 Compute group for stat_horizon

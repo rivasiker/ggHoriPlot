@@ -29,7 +29,7 @@ is.wholenumber <-
 
 
 
-build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse) {
+build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse, mirror) {
 
   if (rm.outliers) {
     data <- data %>%
@@ -100,6 +100,14 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse)
     for (i in 1:ncut) {
       vec_cut <- c(vec_cut, ori+sca*i)
     }
+  # } else if (origin == 'max') {
+  #   ncut <- horizonscale
+  #   ori <- max(data$y[data$outlier], na.rm = T)
+  #   sca <- (range(data$y[data$outlier], na.rm = T)[2]-range(data$y[data$outlier], na.rm = T)[1])/horizonscale
+  #   vec_cut <- c()
+  #   for (i in 1:ncut) {
+  #     vec_cut <- c(vec_cut, ori-sca*i)
+  #   }
   } else if (is.numeric(origin)) {
     # Save origin cutpoint
     ori <- origin
@@ -126,7 +134,6 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse)
     }
   }
 
-
   data <- select(data, -outlier)
 
   if ('xend' %in% names(data)) {
@@ -138,8 +145,7 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse)
   }
 
   vec_cut <- c(sort(vec_cut[vec_cut > ori]), rev(sort(vec_cut[vec_cut < ori])))
-  # print(ori)
-  # print(vec_cut)
+
   # Modify the data frame by the cutpoints
   data <- data %>%
     bind_cols(posneg(data$y, ori, vec_cut))
@@ -180,6 +186,16 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse)
         ymax = ifelse(str_detect(group, 'neg'), 1-ymax, ymax)
       )
   }
+
+  if (mirror) {
+    ymin_vec <- data$ymin
+    data <- data %>%
+      mutate(
+        ymin = -ymax+1,
+        ymax = ymin_vec+1
+      )
+  }
+
 
   data
 }
