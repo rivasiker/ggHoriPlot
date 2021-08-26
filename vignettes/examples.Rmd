@@ -1,10 +1,10 @@
 ---
-title: "gghorizon examples"
+title: "ggHoriPlot examples"
 author: "Iker Rivas-González"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{gghorizon examples}
+  %\VignetteIndexEntry{ggHoriPlot examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,7 +24,7 @@ https://eagereyes.org/blog/2017/joy-plots
 ```{r sports_leisure}
 
 
-load('../data/sports_time.RData')
+load('../data/sports_time.RData.gzip')
 
 sports_time %>% ggplot() +
   geom_horizon(aes(time/60, p), origin = 'min', horizonscale = 4) +
@@ -52,7 +52,7 @@ https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-
 
 ```{r covid_19}
 
-load('../data/COVID.RData')
+load('../data/COVID.RData.gzip')
 
 
 COVID %>%  
@@ -83,7 +83,9 @@ COVID %>%
 
 ```{r repeats}
 
-load('../data/rmsk.RData')
+load('../data/rmsk.RData.gzip')
+
+
 
 cutpoint_tab <- rmsk %>% 
   ungroup() %>% 
@@ -133,7 +135,8 @@ Ordering of states taken from https://benschmidt.org/2014/06/05/optimally-orderi
 
 library(ggh4x)
 
-load('../data/climate_US.RData')
+load('../data/climate_US.RData.gzip')
+
 
 climate_US %>% 
   ggplot() +
@@ -159,7 +162,8 @@ climate_US %>%
 
 ```{r}
 
-load('../data/climate_CPH.RData')
+load('../data/climate_CPH.RData.gzip')
+
 
 cutpoints <- climate_CPH  %>% 
   mutate(

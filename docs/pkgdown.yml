@@ -3,6 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   examples: examples.html
-  gghorizon: gghorizon.html
-last_built: 2021-06-29T11:44Z
+  ggHoriPlot: ggHoriPlot.html
+last_built: 2021-08-26T08:53Z
 

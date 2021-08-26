@@ -1,6 +1,6 @@
 # ggHoriPlot: build horizon plots in ggplot2
 
-This package allows building horizon plots in ggplot2. You can learn more about the package in `vignette('gghorizon')`
+This package allows building horizon plots in ggplot2. You can learn more about the package in `vignette('ggHoriPlot')`
 
 ## Installation
 

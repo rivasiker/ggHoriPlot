@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute group for stat_horizon — build_horizon_df_2 • gghorizon</title>
+<title>Compute group for stat_horizon — build_horizon_df_2 • ggHoriPlot</title>
 
 
 <!-- jquery -->
@@ -71,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">gghorizon</a>
+        <a class="navbar-link" href="../index.html">ggHoriPlot</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -80,12 +80,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../articles/gghorizon.html">Get started</a>
+  <a href="../articles/ggHoriPlot.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -98,15 +98,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/examples.html">gghorizon examples</a>
+      <a href="../articles/examples.html">ggHoriPlot examples</a>
     </li>
   </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rivasiker/gghorizon/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/rivasiker/ggHoriPlot/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,7 +124,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute group for stat_horizon</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rivasiker/gghorizon/blob/master/R/build_horizon_df_2.R'><code>R/build_horizon_df_2.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rivasiker/ggHoriPlot/blob/master/R/build_horizon_df_2.R'><code>R/build_horizon_df_2.R</code></a></small>
     <div class="hidden name"><code>build_horizon_df_2.Rd</code></div>
     </div>
 
@@ -132,7 +132,7 @@
     <p>Compute group for stat_horizon</p>
     </div>
 
-    <pre class="usage"><span class='fu'>build_horizon_df_2</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>origin</span>, <span class='va'>horizonscale</span>, <span class='va'>rm.outliers</span>, <span class='va'>reverse</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>build_horizon_df_2</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>origin</span>, <span class='va'>horizonscale</span>, <span class='va'>rm.outliers</span>, <span class='va'>reverse</span>, <span class='va'>mirror</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,6 +159,10 @@ or a user-supplied numeric vector with the cutpoints defining the different rang
     <tr>
       <th>reverse</th>
       <td><p>If <code>TRUE</code>, the horizon peaks for the values below the origin are reversed (default is <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>mirror</th>
+      <td><p>If <code>TRUE</code>, the horizon peaks for all the values are reversed (default is <code>FALSE</code>).</p></td>
     </tr>
     </table>
 

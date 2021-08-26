@@ -4,7 +4,7 @@ author: "Iker Rivas-González"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{gghorizon}
+  %\VignetteIndexEntry{ggHoriPlot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
