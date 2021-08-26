@@ -100,7 +100,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rivasiker.github.io/ggHoriPlot/">ggHoriPlot</a></span><span class="op">)</span></code></pre></div>
 <p><a href="https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv" class="uri">https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv</a> <a href="https://eagereyes.org/blog/2017/joy-plots" class="uri">https://eagereyes.org/blog/2017/joy-plots</a></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">'../data/sports_time.RData'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sports_time</span><span class="op">)</span>
 
 <span class="va">sports_time</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">time</span><span class="op">/</span><span class="fl">60</span>, <span class="va">p</span><span class="op">)</span>, origin <span class="op">=</span> <span class="st">'min'</span>, horizonscale <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
@@ -124,7 +124,7 @@
 <p><img src="examples_files/figure-html/sports_leisure-1.png" width="700"></p>
 <p><a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide" class="uri">https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">'../data/COVID.RData'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">COVID</span><span class="op">)</span>
 
 
 <span class="va">COVID</span> <span class="op">%&gt;%</span>  
@@ -149,7 +149,8 @@
   <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/covid_19-1.png" width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">'../data/rmsk.RData'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmsk</span><span class="op">)</span>
+
 
 <span class="va">cutpoint_tab</span> <span class="op">&lt;-</span> <span class="va">rmsk</span> <span class="op">%&gt;%</span> 
   <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -191,7 +192,8 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">'../data/climate_US.RData'</span><span class="op">)</span>
+<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_US</span><span class="op">)</span>
+
 
 <span class="va">climate_US</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -212,7 +214,7 @@
   <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> </code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">'../data/climate_CPH.RData'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
 
 <span class="va">cutpoints</span> <span class="op">&lt;-</span> <span class="va">climate_CPH</span>  <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>
