@@ -1,4 +1,5 @@
-# ggHoriPlot: build horizon plots in ggplot2 <img src='man/figures/sticker_ggHoriPlot.png' align="right" height="131.5" /></a>
+# ggHoriPlot: build horizon plots in ggplot2 <img src='https://github.com/rivasiker/ggHoriPlot/blob/master/man/images/sticker_ggHoriPlot.png' align="right" height="180" >
+
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml)
