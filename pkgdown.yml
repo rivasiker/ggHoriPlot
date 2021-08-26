@@ -1,0 +1,8 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  examples: examples.html
+  ggHoriPlot: ggHoriPlot.html
+last_built: 2021-08-26T11:42Z
+
