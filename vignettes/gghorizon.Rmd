@@ -1,5 +1,5 @@
 ---
-title: "gghorizon"
+title: "ggHoriPlot"
 author: "Iker Rivas-González"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
