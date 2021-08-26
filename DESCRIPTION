@@ -1,6 +1,6 @@
 Package: ggHoriPlot
 Type: Package
-Title: Horizon Plots For ggplot2
+Title: Horizon Plots for ggplot2
 Version: 0.1.0
 Author: Iker Rivas-González
 Maintainer: Iker Rivas-González <ikerrivas96@gmail.com>
