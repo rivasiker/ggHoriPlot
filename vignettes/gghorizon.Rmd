@@ -14,7 +14,7 @@ vignette: >
 library(tidyverse)
 library(patchwork)
 library(ggthemes)
-library(gghorizon)
+library(ggHoriPlot)
 
 x = 1:300
 y = x * sin(0.1 * x)
