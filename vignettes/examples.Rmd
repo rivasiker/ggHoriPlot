@@ -13,7 +13,7 @@ vignette: >
 
 library(tidyverse)
 library(ggthemes)
-library(gghorizon)
+library(ggHoriPlot)
 
 ```
 
