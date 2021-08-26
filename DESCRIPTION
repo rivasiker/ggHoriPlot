@@ -25,4 +25,6 @@ Suggests:
     knitr,
     utils,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    ggthemes,
+    patchwork
