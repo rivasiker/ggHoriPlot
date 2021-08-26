@@ -1,4 +1,4 @@
-# ggHoriPlot: build horizon plots in ggplot2 <img src='https://github.com/rivasiker/ggHoriPlot/blob/master/man/images/sticker_ggHoriPlot.png' align="right" width="100" height="100">
+# ggHoriPlot: build horizon plots in ggplot2 <img src='https://github.com/rivasiker/ggHoriPlot/blob/master/man/images/sticker_ggHoriPlot.png' align="right" height="180" >
 
 
 <!-- badges: start -->
