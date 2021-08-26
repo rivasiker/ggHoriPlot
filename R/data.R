@@ -9,7 +9,8 @@
 #'   \item{time}{time of the day, in hhmm format}
 #'   \item{p}{standardized peak}
 #' }
-#' @source \url{https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv, https://eagereyes.org/blog/2017/joy-plots}
+#' @source \url{https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv}
+#' @source \url{https://eagereyes.org/blog/2017/joy-plots}
 "sports_time"
 
 
@@ -56,7 +57,8 @@
 #'   \item{AvgTemperature}{average temperature in Fahrenheit}
 #'   \item{date_mine}{data in yyy-mm-dd format}
 #' }
-#' @source \url{https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities, https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/}
+#' @source \url{https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities}
+#' @source \url{https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/}
 "climate_US"
 
 
