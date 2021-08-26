@@ -1,11 +1,11 @@
-Package: gghorizon
+Package: ggHoriPlot
 Type: Package
 Title: Horizon Plots For ggplot2
 Version: 0.1.0
 Author: Iker Rivas-González
 Maintainer: Iker Rivas-González <ikerrivas96@gmail.com>
 Description: Building horizon plots in ggplot2.
-URL: https://rivasiker.github.io/gghorizon/, https://github.com/rivasiker/gghorizon
+URL: https://rivasiker.github.io/ggHoriPlot/, https://github.com/rivasiker/ggHoriPlot
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
