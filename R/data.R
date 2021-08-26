@@ -3,6 +3,7 @@
 #' A dataset containing the peak time for doing 29 sports
 #' and leisure activities.
 #'
+#' @docType data
 #' @format A data frame with 8,092 rows and 3 variables:
 #' \describe{
 #'   \item{activity}{name of the activity}

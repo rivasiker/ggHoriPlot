@@ -19,7 +19,9 @@ A data frame with 57,828 rows and 9 variables:
 }
 }
 \source{
-\url{https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities, https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/}
+\url{https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities}
+
+\url{https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/}
 }
 \usage{
 climate_US

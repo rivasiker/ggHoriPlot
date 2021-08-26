@@ -23,8 +23,7 @@ https://eagereyes.org/blog/2017/joy-plots
 
 ```{r sports_leisure}
 
-
-load('../data/sports_time.RData.gzip')
+utils::data(sports_time)
 
 sports_time %>% ggplot() +
   geom_horizon(aes(time/60, p), origin = 'min', horizonscale = 4) +
@@ -52,7 +51,7 @@ https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-
 
 ```{r covid_19}
 
-load('../data/COVID.RData.gzip')
+utils::data(COVID)
 
 
 COVID %>%  
@@ -83,8 +82,7 @@ COVID %>%
 
 ```{r repeats}
 
-load('../data/rmsk.RData.gzip')
-
+utils::data(rmsk)
 
 
 cutpoint_tab <- rmsk %>% 
@@ -135,7 +133,7 @@ Ordering of states taken from https://benschmidt.org/2014/06/05/optimally-orderi
 
 library(ggh4x)
 
-load('../data/climate_US.RData.gzip')
+utils::data(climate_US)
 
 
 climate_US %>% 
@@ -162,8 +160,7 @@ climate_US %>%
 
 ```{r}
 
-load('../data/climate_CPH.RData.gzip')
-
+utils::data(climate_CPH)
 
 cutpoints <- climate_CPH  %>% 
   mutate(

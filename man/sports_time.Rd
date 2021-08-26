@@ -13,7 +13,9 @@ A data frame with 8,092 rows and 3 variables:
 }
 }
 \source{
-\url{https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv, https://eagereyes.org/blog/2017/joy-plots}
+\url{https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv}
+
+\url{https://eagereyes.org/blog/2017/joy-plots}
 }
 \usage{
 sports_time
