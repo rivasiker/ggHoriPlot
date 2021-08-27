@@ -16,21 +16,57 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
 
 `ggHoriPlot` allows you to build horizon plots in `ggplot2` easily. Horizon plots are specially useful to represent time-series data, specially when there are many plots and little space. You can learn more about horizon plots [here](https://bernatgel.github.io/karyoploter_tutorial/Tutorial/PlotHorizon/PlotHorizon.html).
 
 This vignette goes through all the functionality of the package. If you want to see examples with real data, you can refer to `vignette('examples', 'ggHoriPlot')`.
 
-```{r loading}
+
+
+# Introduction
+
+The data used through this vignette are tables with sine waves, which aims to mimic time-series data. The data looks like this: 
+
+```{r data}
 
 library(tidyverse)
 library(patchwork)
 library(ggthemes)
+
+x = 1:300
+y = x * sin(0.1 * x)
+dat_tab <- tibble(x = x,
+       xend = x+0.9999,
+       y = y)
+
+x = 1:400
+y = x * sin(0.2 * x) + 100
+dat_tab_bis <- tibble(x = x,
+       xend = x+0.9999,
+       y = y)
+
+tab_tot <- mutate(dat_tab, type = 'A') %>% 
+  bind_rows(mutate(dat_tab_bis, type='B'))
+
+tab_tot %>% 
+  ggplot() +
+  geom_line(aes(x, y)) +
+  facet_wrap(~type, scales = 'free_y', ncol = 1) +
+  theme_few()
+
+```
+
+This representation of the dataset is fine if we only have a few waves. However, if we aim to represent and compare time series with many entries, it might be challenging to plot them as line charts. A more convenient way to plot this type of datasets are horizon plots, which are able to condense the data but still retain all the information.  
+
+```{r set}
+
+
 library(ggHoriPlot)
 
 
 plotAllLayers <- function(dat, ori, cutpoints, colors){
+  # Helper function to plot the origin and cutpoints 
+  # of the horizon plot for comparison
   p <- ggplot()
   acc <- 1
   for (i in cutpoints[cutpoints<=ori]) { 
@@ -55,22 +91,9 @@ plotAllLayers <- function(dat, ori, cutpoints, colors){
     theme_few()
 }
 
-x = 1:300
-y = x * sin(0.1 * x)
-dat_tab <- tibble(x = x,
-       xend = x+0.9999,
-       y = y)
-
-x = 1:400
-y = x * sin(0.2 * x) + 100
-dat_tab_bis <- tibble(x = x,
-       xend = x+0.9999,
-       y = y)
-
-tab_tot <- mutate(dat_tab, type = 'A') %>% 
-  bind_rows(mutate(dat_tab_bis, type='B'))
-
 ```
+
+
 
 ```{r midpoint}
 
@@ -101,7 +124,7 @@ cutpoints  <- tibble(
 
 b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 
 ```
@@ -134,7 +157,7 @@ me <- median(dat_tab$y, na.rm = T)
 
 b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -174,7 +197,7 @@ me <- mean(dat_tab$y, na.rm = T)
 b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -205,7 +228,7 @@ cutpoints  <- tibble(
 
 b <- plotAllLayers(dat_tab, 50, cutpoints$cuts, cutpoints$color)
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -236,7 +259,7 @@ me <- median(dat_tab$y, na.rm = T)
 
 b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -280,7 +303,7 @@ mid <- sum(range(dat_tab_na$y, na.rm = T))/2
 b <- plotAllLayers(dat_tab_na, mid, cutpoints$cuts, cutpoints$color)
 
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -308,23 +331,13 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_step(aes(x = x, y = y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+dt <- dat_tab %>% 
+  pivot_longer(c(x, xend)) %>% 
+  mutate(x = value)
 
-a / b+ plot_layout(guides = 'collect')
+b <- plotAllLayers(dt, mid, cutpoints$cuts, cutpoints$color)
+
+a / b+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -357,7 +370,7 @@ mid <- sum(range(dat_tab$y, na.rm = T))/2
 
 b <- plotAllLayers(dat_tab, mid, cutpoints$cuts, cutpoints$color)
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(5, 1))
 
 ```
 
@@ -392,7 +405,7 @@ mid <- sum(range(dat_tab$y, na.rm = T))/2
 b <- plotAllLayers(dat_tab, mid, cutpoints$cuts, cutpoints$color)
 
 
-b/a + plot_layout(guides = 'collect')
+b/a + plot_layout(guides = 'collect', heights = c(10, 1))
 
 ```
 
@@ -407,7 +420,7 @@ tab_tot %>%
     horizonscale = 6,
     origin = 'midpoint'
   ) +
-  facet_wrap(~type, ncol = 1, scales = 'free') +
+  facet_wrap(~type, ncol = 1, scales = 'free_y') +
   theme_few() +
   scale_fill_hcl()
 
@@ -499,11 +512,11 @@ b3 <- plotAllLayers(dat_tab_outlier, 0.07073676, cutpoints_a3$cuts, cutpoints_a3
 
 
 
-(b1/a1) + plot_annotation("origin = 'midpoint', rm.outliers = F")+ plot_layout(guides = 'collect')
+(b1/a1) + plot_annotation("origin = 'midpoint', rm.outliers = F")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
-(b3/a3) + plot_annotation("origin = 'median', rm.outliers = F")+ plot_layout(guides = 'collect')
+(b3/a3) + plot_annotation("origin = 'median', rm.outliers = F")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
-(b2/a2) + plot_annotation("origin = 'median', rm.outliers = T")+ plot_layout(guides = 'collect')
+(b2/a2) + plot_annotation("origin = 'median', rm.outliers = T")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 
 ```
@@ -546,7 +559,7 @@ b4 <- plotAllLayers(dat_tab_outlier, 0, cutpoints_a4$cuts, cutpoints_a4$color)
 
 
 
-(b4/a3) + plot_annotation("origin = 0, rm.outliers = F, custom horizonscale")+ plot_layout(guides = 'collect')
+(b4/a3) + plot_annotation("origin = 0, rm.outliers = F, custom horizonscale")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -569,17 +582,16 @@ a4 <- dat_tab %>%
 
 
 cutpoints_a4  <- tibble(
-  cuts = c(78.48,  172.74,  266.998, -110.034, -204.292, -298.55),
-  names = c('yneg1', 'yneg2', 'yneg3', 'yneg4', 'yneg5', 'yneg6'), 
-  color = c( "#B76AA8", "#8F4D9F","#5B3794", "#D78CB1", "#F1B1BE", "#F8DCD9")
-) %>% 
-  mutate(names = factor(names, rev(names))) %>% 
-  arrange(names)
+  cuts = c(-15.78, 78.48,  172.74,  266.998, -110.034, -204.292, -298.55),
+  color = c( "#B76AA8", "#8F4D9F","#5B3794", 'white', "#D78CB1", "#F1B1BE", "#F8DCD9")
+) 
+
+cutpoints_a4  <- cutpoints_a4 %>% arrange(desc(cuts))
 
 
-b4 <- plotAllLayers(dat_tab, 0, cutpoints_a4$cuts, cutpoints_a4$color)
+b4 <- plotAllLayers(dat_tab, -298.55, cutpoints_a4$cuts, cutpoints_a4$color)
 
-(b4/a4) + plot_layout(guides = 'collect')
+(b4/a4) + plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -610,7 +622,7 @@ cutpoints  <- tibble(
 b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
 
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
@@ -642,7 +654,7 @@ cutpoints  <- tibble(
 b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
 
 
-b/a+ plot_layout(guides = 'collect')
+b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 
 ```
