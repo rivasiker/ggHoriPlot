@@ -1,13 +1,26 @@
 ---
 title: "ggHoriPlot"
-author: "Iker Rivas-González"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{ggHoriPlot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+`ggHoriPlot` allows you to build horizon plots in `ggplot2` easily. Horizon plots are specially useful to represent time-series data, specially when there are many plots and little space. You can learn more about horizon plots [here](https://bernatgel.github.io/karyoploter_tutorial/Tutorial/PlotHorizon/PlotHorizon.html).
+
+This vignette goes through all the functionality of the package. If you want to see examples with real data, you can refer to `vignette('examples', 'ggHoriPlot')`.
 
 ```{r loading}
 
@@ -15,6 +28,32 @@ library(tidyverse)
 library(patchwork)
 library(ggthemes)
 library(ggHoriPlot)
+
+
+plotAllLayers <- function(dat, ori, cutpoints, colors){
+  p <- ggplot()
+  acc <- 1
+  for (i in cutpoints[cutpoints<=ori]) { 
+    colo <- colors[acc]
+    p <- p + geom_ribbon(aes(x = x, y = y, ymin = y, ymax = ori),
+                         fill = colo,
+              data = mutate(dat, y = ifelse(between(y, i, ori), y, 
+                                                ifelse(y<ori, i, ori))))
+    acc <- acc+1
+  }
+  for (i in cutpoints[cutpoints>=ori]) { 
+    colo <- colors[acc]
+    p <- p + geom_ribbon(aes(x = x, y = y, ymin = ori, ymax = y),
+                         fill = colo,
+              data = mutate(dat, y = ifelse(between(y, ori, i), y, 
+                                                ifelse(y>ori, i, ori))))
+    acc <- acc+1
+  }
+  
+  
+  p+geom_line(aes(x, y), data=dat)+
+    theme_few()
+}
 
 x = 1:300
 y = x * sin(0.1 * x)
@@ -31,15 +70,7 @@ dat_tab_bis <- tibble(x = x,
 tab_tot <- mutate(dat_tab, type = 'A') %>% 
   bind_rows(mutate(dat_tab_bis, type='B'))
 
-
-
-
 ```
-
-
-
-
-
 
 ```{r midpoint}
 
@@ -65,27 +96,18 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
-a / b
+
+
+b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
+
+b/a+ plot_layout(guides = 'collect')
+
 
 ```
 
 ```{r median}
+
 
 a <- dat_tab %>% 
   ggplot() +
@@ -110,23 +132,9 @@ cutpoints  <- tibble(
 
 me <- median(dat_tab$y, na.rm = T)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = me, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = median(y, na.rm = T))) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
-a / b
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
@@ -163,21 +171,10 @@ cutpoints  <- tibble(
 
 me <- mean(dat_tab$y, na.rm = T)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = me, 
-                ymax = y_max, 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = mean(y, na.rm = T))) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
 
-a / b
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
@@ -206,23 +203,9 @@ cutpoints  <- tibble(
 
 
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 50, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = 50)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b <- plotAllLayers(dat_tab, 50, cutpoints$cuts, cutpoints$color)
 
-a / b
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
@@ -249,29 +232,16 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
+me <- median(dat_tab$y, na.rm = T)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = median(y, na.rm = T), 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = median(y, na.rm = T))) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b <- plotAllLayers(dat_tab, me, cutpoints$cuts, cutpoints$color)
 
-a / b
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
-
 ```{r midpoint_NA}
+
 
 x = 1:300
 y = x * sin(0.1 * x)
@@ -304,27 +274,15 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab_na %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
-a / b
+mid <- sum(range(dat_tab_na$y, na.rm = T))/2
+
+b <- plotAllLayers(dat_tab_na, mid, cutpoints$cuts, cutpoints$color)
+
+
+b/a+ plot_layout(guides = 'collect')
 
 ```
-
-
 
 ```{r midpoint_with_xend}
 
@@ -366,7 +324,7 @@ b <- dat_tab %>%
   theme_few() +
   theme(legend.position = 'none')
 
-a / b
+a / b+ plot_layout(guides = 'collect')
 
 ```
 
@@ -394,23 +352,12 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
-a / b
+mid <- sum(range(dat_tab$y, na.rm = T))/2
+
+b <- plotAllLayers(dat_tab, mid, cutpoints$cuts, cutpoints$color)
+
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
@@ -440,28 +387,14 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+mid <- sum(range(dat_tab$y, na.rm = T))/2
 
-a / b
+b <- plotAllLayers(dat_tab, mid, cutpoints$cuts, cutpoints$color)
+
+
+b/a + plot_layout(guides = 'collect')
 
 ```
-
-
-
 
 ```{r faceting}
 
@@ -478,16 +411,10 @@ tab_tot %>%
   theme_few() +
   scale_fill_hcl()
 
-
-
 ```
 
 
-
-
-
 ```{r midpoint_outlier}
-
 
 x = 1:300
 y = sin(0.1 * x) + 50*dnorm(x, 150, 2)
@@ -562,62 +489,24 @@ cutpoints_a3  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b1 <- dat_tab_outlier %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 4.811927,
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf,
-                              cuts),
-                fill = names), data = cutpoints_a1) +
-  geom_hline(aes(yintercept = 4.811927)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints_a1, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints_a1$color) +
-  scale_fill_manual(values = cutpoints_a1$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
-b2 <- dat_tab_outlier %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0.03362305,
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf,
-                              cuts),
-                fill = names), data = cutpoints_a2) +
-  geom_hline(aes(yintercept = 0.03362305)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints_a2, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints_a2$color) +
-  scale_fill_manual(values = cutpoints_a2$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
-b3 <- dat_tab_outlier %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0.07073676,
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf,
-                              cuts),
-                fill = names), data = cutpoints_a3) +
-  geom_hline(aes(yintercept = 0.07073676)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints_a3, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints_a3$color) +
-  scale_fill_manual(values = cutpoints_a3$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b1 <- plotAllLayers(dat_tab_outlier, 4.811927, cutpoints_a1$cuts, cutpoints_a1$color)
 
-(a1 / b1) + plot_annotation("origin = 'midpoint', rm.outliers = F")
+b2 <- plotAllLayers(dat_tab_outlier, 0.03362305, cutpoints_a2$cuts, cutpoints_a2$color)
 
-(a3 / b3) + plot_annotation("origin = 'median', rm.outliers = F")
+b3 <- plotAllLayers(dat_tab_outlier, 0.07073676, cutpoints_a3$cuts, cutpoints_a3$color)
 
-(a2 / b2) + plot_annotation("origin = 'median', rm.outliers = T")
+
+
+(b1/a1) + plot_annotation("origin = 'midpoint', rm.outliers = F")+ plot_layout(guides = 'collect')
+
+(b3/a3) + plot_annotation("origin = 'median', rm.outliers = F")+ plot_layout(guides = 'collect')
+
+(b2/a2) + plot_annotation("origin = 'median', rm.outliers = T")+ plot_layout(guides = 'collect')
+
 
 ```
-
 
 ```{r custom_horizonscale}
 
@@ -653,32 +542,15 @@ cutpoints_a4  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b4 <- dat_tab_outlier %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0,
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf,
-                              cuts),
-                fill = names), data = cutpoints_a4) +
-  geom_hline(aes(yintercept = 0)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints_a4, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints_a4$color) +
-  scale_fill_manual(values = cutpoints_a4$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b4 <- plotAllLayers(dat_tab_outlier, 0, cutpoints_a4$cuts, cutpoints_a4$color)
 
 
-(a4 / b4) + plot_annotation("origin = 0, rm.outliers = F, custom horizonscale")
 
+(b4/a3) + plot_annotation("origin = 0, rm.outliers = F, custom horizonscale")+ plot_layout(guides = 'collect')
 
 ```
 
-
-
 ```{r min}
-
 
 
 a4 <- dat_tab %>% 
@@ -696,7 +568,6 @@ a4 <- dat_tab %>%
 
 
 
-
 cutpoints_a4  <- tibble(
   cuts = c(78.48,  172.74,  266.998, -110.034, -204.292, -298.55),
   names = c('yneg1', 'yneg2', 'yneg3', 'yneg4', 'yneg5', 'yneg6'), 
@@ -705,31 +576,14 @@ cutpoints_a4  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b4 <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = -15.7758,
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf,
-                              cuts),
-                fill = names), data = cutpoints_a4) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints_a4, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints_a4$color) +
-  scale_fill_manual(values = cutpoints_a4$color) +
-  theme_few() +
-  theme(legend.position = 'none')
 
+b4 <- plotAllLayers(dat_tab, 0, cutpoints_a4$cuts, cutpoints_a4$color)
 
-(a4 / b4) 
-
+(b4/a4) + plot_layout(guides = 'collect')
 
 ```
 
-
-
 ```{r reverse}
-
 
 a <- dat_tab %>% 
   ggplot() +
@@ -753,29 +607,44 @@ cutpoints  <- tibble(
   mutate(names = factor(names, rev(names))) %>% 
   arrange(names)
 
-b <- dat_tab %>% 
-  ggplot() + 
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = sum(range(dat_tab$y, na.rm = T))/2, 
-                ymax = ifelse(cuts %in% c(min(cuts),
-                                          max(cuts)),
-                              cuts*Inf, 
-                              cuts), 
-                fill = names), data = cutpoints) +
-  geom_hline(aes(yintercept = sum(range(y, na.rm = T))/2)) +
-  geom_hline(aes(yintercept = cuts), data = filter(cutpoints, cuts %in% c(min(cuts), max(cuts)))) +
-  geom_line(aes(x, y)) +
-  scale_color_manual(values = cutpoints$color) +
-  scale_fill_manual(values = cutpoints$color) +
-  theme_few() +
-  theme(legend.position = 'none')
+b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
 
-a / b
+
+b/a+ plot_layout(guides = 'collect')
 
 ```
 
 
+```{r mirror}
+
+a <- dat_tab %>% 
+  ggplot() +
+  geom_horizon(
+    aes(x = x, 
+    # xend = xend, 
+    y=y, 
+    fill=..Cutpoints..), 
+    horizonscale = 6,
+    origin = 'midpoint',
+    mirror = T
+  ) +
+  theme_few()  +
+  scale_fill_hcl()
+
+cutpoints  <- tibble(
+  cuts = c(78.48221,  172.74027,  266.99833, -110.03390, -204.29196, -298.55001),
+  names = c('ypos1', 'ypos2', 'ypos3', 'yneg1', 'yneg2', 'yneg3'), 
+  color = c("#D7E2D4", "#36ABA9", "#324DA0", "#F6DE90", "#E78200", "#A51122")
+) %>% 
+  mutate(names = factor(names, rev(names))) %>% 
+  arrange(names)
+
+b <- plotAllLayers(dat_tab, 0, cutpoints$cuts, cutpoints$color)
 
 
+b/a+ plot_layout(guides = 'collect')
 
+
+```
 
 
