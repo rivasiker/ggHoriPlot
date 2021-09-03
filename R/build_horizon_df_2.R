@@ -44,6 +44,11 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
         outlier = TRUE)
   }
 
+  if (!is.numeric(horizonscale)) {
+    stop('please, provide a valid horizonscale')
+  }
+
+
   # If the origin is the median or mean
   if (origin %in% c('median', 'mean', 'midpoint')) {
     # Define origin cutpoint
@@ -77,19 +82,17 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
     }
 
   } else if (origin == 'quantiles') {
-    if (length(horizonscale)==1) {
-      if (is.wholenumber(horizonscale)) {
-        ncut <- horizonscale
-        ori <- quantile(data$y[data$outlier], (ncut%/%2)/ncut, na.rm = T)
-        vec_cut <- c()
-        for (i in 0:ncut) {
-          if (i != ncut%/%2) {
-            vec_cut <- c(vec_cut, quantile(data$y[data$outlier], (i)/ncut, na.rm = T))
-          }
+    if ((length(horizonscale)==1) & (is.wholenumber(horizonscale))) {
+      ncut <- horizonscale
+      ori <- quantile(data$y[data$outlier], (ncut%/%2)/ncut, na.rm = T)
+      vec_cut <- c()
+      for (i in 0:ncut) {
+        if (i != ncut%/%2) {
+          vec_cut <- c(vec_cut, quantile(data$y[data$outlier], (i)/ncut, na.rm = T))
         }
       }
     } else {
-      stop("The horizonscale should be a positive integer when using origin = 'quantiles'")
+      stop("the horizonscale should be a positive integer when using origin = 'quantiles'")
     }
     # If the origin is numeric
   } else if (origin == 'min') {
@@ -100,14 +103,6 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
     for (i in 1:ncut) {
       vec_cut <- c(vec_cut, ori+sca*i)
     }
-  # } else if (origin == 'max') {
-  #   ncut <- horizonscale
-  #   ori <- max(data$y[data$outlier], na.rm = T)
-  #   sca <- (range(data$y[data$outlier], na.rm = T)[2]-range(data$y[data$outlier], na.rm = T)[1])/horizonscale
-  #   vec_cut <- c()
-  #   for (i in 1:ncut) {
-  #     vec_cut <- c(vec_cut, ori-sca*i)
-  #   }
   } else if (is.numeric(origin)) {
     # Save origin cutpoint
     ori <- origin
@@ -125,13 +120,15 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
           vec_cut <- c(vec_cut, ori-sca*i)
         }
       } else {
-        stop('The horizonscale should be a vector or a number')
+        stop('the horizonscale should be a vector or a number')
       }
 
     } else {
       ncut <- length(horizonscale)
       vec_cut <- horizonscale
     }
+  } else {
+    stop('please, provide a valid origin')
   }
 
   data <- select(data, -outlier)
