@@ -4,6 +4,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml)
+[![codecov](https://codecov.io/gh/rivasiker/ggHoriPlot/branch/master/graph/badge.svg?token=8V5E63YVM2)](https://codecov.io/gh/rivasiker/ggHoriPlot)
 <!-- badges: end -->
 
 This package allows building horizon plots in ggplot2. You can learn
