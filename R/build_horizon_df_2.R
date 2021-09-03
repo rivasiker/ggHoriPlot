@@ -52,9 +52,11 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
   # If the origin is the median or mean
   if (origin %in% c('median', 'mean', 'midpoint')) {
     # Define origin cutpoint
-    ori = ifelse(origin == 'median', median(data$y[data$outlier], na.rm = T), NA)
-    ori = ifelse(origin == 'mean', mean(data$y[data$outlier], na.rm = T), ori)
-    ori = ifelse(origin == 'midpoint', sum(range(data$y[data$outlier], na.rm = T))/2, ori)
+    ori = ifelse(origin == 'median',
+                 median(data$y[data$outlier], na.rm = T),
+                 ifelse(origin == 'mean',
+                        mean(data$y[data$outlier], na.rm = T),
+                        sum(range(data$y[data$outlier], na.rm = T))/2))
     # If the horizon scale is an integer
     if (length(horizonscale)==1) {
       if (is.wholenumber(horizonscale)) {

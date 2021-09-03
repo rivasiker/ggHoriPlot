@@ -15,3 +15,20 @@ test_that("Outliers aare removed", {
 
   expect_equal(levels(layer_data(p)$Cutpoints)[1], "[4.33333, 5)")
 })
+
+
+test_that("Outliers aare removed", {
+  df <- tibble(x = 1:5, y = c(1, 2, 3, 4, 5))
+
+  p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'origin')
+
+  expect_warning(print(p), 'valid origin')
+})
+
+test_that("Outliers aare removed", {
+  df <- tibble(x = 1:5, y = c(1, 2, 3, 4, 5))
+
+  p <- ggplot(df, aes(x, y))+geom_horizon(horizonscale = 'horizonscale')
+
+  expect_warning(print(p), 'valid horizonscale')
+})
