@@ -121,10 +121,7 @@ build_horizon_df_2 <- function(data, origin, horizonscale, rm.outliers, reverse,
         for (i in 1:((ncut+1)%/%2)) {
           vec_cut <- c(vec_cut, ori-sca*i)
         }
-      } else {
-        stop('the horizonscale should be a vector or a number')
       }
-
     } else {
       ncut <- length(horizonscale)
       vec_cut <- horizonscale
