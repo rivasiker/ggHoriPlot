@@ -97,33 +97,38 @@
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
+<p>Load the libraries:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="co">#&gt; ✓ ggplot2 3.3.5     ✓ purrr   0.3.4</span>
-<span class="co">#&gt; ✓ tibble  3.1.4     ✓ dplyr   1.0.5</span>
-<span class="co">#&gt; ✓ tidyr   1.1.3     ✓ stringr 1.4.0</span>
-<span class="co">#&gt; ✓ readr   2.0.1     ✓ forcats 0.5.1</span>
-<span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rivasiker.github.io/ggHoriPlot/">ggHoriPlot</a></span><span class="op">)</span> 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
-
-<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></code></pre></div>
+<p>Load the dataset and calculate the cutpoints and origin:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
 
 <span class="va">cutpoints</span> <span class="op">&lt;-</span> <span class="va">climate_CPH</span>  <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>
     outlier <span class="op">=</span> <span class="fu">between</span><span class="op">(</span>
       <span class="va">AvgTemperature</span>, 
-      <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, <span class="fl">0.25</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">-</span><span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, <span class="fl">0.75</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">+</span><span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+      <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, <span class="fl">0.25</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">-</span>
+        <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, <span class="fl">0.75</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">+</span>
+        <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">outlier</span><span class="op">)</span>
 
-<span class="va">ori</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
-<span class="va">sca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, length.out <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">4</span><span class="op">]</span>
+<span class="va">ori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
+<span class="va">sca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, 
+           <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, 
+           length.out <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">4</span><span class="op">]</span>
 
-<span class="va">climate_CPH</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">ori</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># The origin</span>
+<span class="co">#&gt; [1] 6.58</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sca</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># The horizon scale cutpoints</span>
+<span class="co">#&gt; [1] -12.11  -5.88   0.35  12.81  19.05  25.28</span></code></pre></div>
+<p>Build the horizon plots in <code>ggplot2</code> using <code>geom_horizon</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">climate_CPH</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date_mine</span>, 
                    <span class="va">AvgTemperature</span>,
                    fill <span class="op">=</span> <span class="va">..Cutpoints..</span><span class="op">)</span>, 
@@ -139,9 +144,22 @@
     axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
     panel.border <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span></code></pre></div>
+  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, 
+               date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, 
+               date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Average daily temperature in Copenhagen'</span>, 
+          <span class="st">'from 1995 to 2019'</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/CPH_climate-1.png"><!-- --></p>
+</div>
+<div id="learn-more" class="section level2">
+<h2 class="hasAnchor">
+<a href="#learn-more" class="anchor"></a>Learn more</h2>
+<p>You can check out the full functionality of <code>ggHoriPlot</code> in the following guides:</p>
+<ul>
+<li><a href="https://rivasiker.github.io/ggHoriPlot/articles/ggHoriPlot.html">Getting started</a></li>
+<li><a href="https://rivasiker.github.io/ggHoriPlot/articles/examples.html">Examples with real data</a></li>
+</ul>
 </div>
 </div>
   </div>
