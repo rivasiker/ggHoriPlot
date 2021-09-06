@@ -20,32 +20,44 @@ following command:
 
 ## Basic example
 
+Load the libraries:
+
 ``` r
 library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-#> ✓ tibble  3.1.4     ✓ dplyr   1.0.5
-#> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-#> ✓ readr   2.0.1     ✓ forcats 0.5.1
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
 library(ggHoriPlot) 
 library(ggthemes)
+```
 
+Load the dataset and calculate the cutpoints and origin:
+
+``` r
 utils::data(climate_CPH)
 
 cutpoints <- climate_CPH  %>% 
   mutate(
     outlier = between(
       AvgTemperature, 
-      quantile(AvgTemperature, 0.25, na.rm=T)-1.5*IQR(AvgTemperature, na.rm=T),
-      quantile(AvgTemperature, 0.75, na.rm=T)+1.5*IQR(AvgTemperature, na.rm=T))) %>% 
+      quantile(AvgTemperature, 0.25, na.rm=T)-
+        1.5*IQR(AvgTemperature, na.rm=T),
+      quantile(AvgTemperature, 0.75, na.rm=T)+
+        1.5*IQR(AvgTemperature, na.rm=T))) %>% 
   filter(outlier)
 
-ori = sum(range(cutpoints$AvgTemperature))/2
-sca <- seq(range(cutpoints$AvgTemperature)[1], range(cutpoints$AvgTemperature)[2], length.out = 7)[-4]
+ori <- sum(range(cutpoints$AvgTemperature))/2
+sca <- seq(range(cutpoints$AvgTemperature)[1], 
+           range(cutpoints$AvgTemperature)[2], 
+           length.out = 7)[-4]
 
+round(ori, 2) # The origin
+#> [1] 6.58
+
+round(sca, 2) # The horizon scale cutpoints
+#> [1] -12.11  -5.88   0.35  12.81  19.05  25.28
+```
+
+Build the horizon plots in `ggplot2` using `geom_horizon`:
+
+``` r
 climate_CPH %>% ggplot() +
   geom_horizon(aes(date_mine, 
                    AvgTemperature,
@@ -62,8 +74,22 @@ climate_CPH %>% ggplot() +
     axis.ticks.y = element_blank(),
     panel.border = element_blank()
     ) +
-  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") +
-  xlab('Date')
+  scale_x_date(expand=c(0,0), 
+               date_breaks = "1 month", 
+               date_labels = "%b") +
+  xlab('Date') +
+  ggtitle('Average daily temperature in Copenhagen', 
+          'from 1995 to 2019')
 ```
 
 ![](man/figures/CPH_climate-1.png)<!-- -->
+
+## Learn more
+
+You can check out the full functionality of `ggHoriPlot` in the
+following guides:
+
+-   [Getting
+    started](https://rivasiker.github.io/ggHoriPlot/articles/ggHoriPlot.html)
+-   [Examples with real
+    data](https://rivasiker.github.io/ggHoriPlot/articles/examples.html)

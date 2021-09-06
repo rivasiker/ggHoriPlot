@@ -30,11 +30,19 @@ devtools::install_github("rivasiker/ggHoriPlot")
 
 ## Basic example
 
-```{r CPH_climate}
+Load the libraries:
+
+```{r libraries, warning=FALSE, message=FALSE}
 
 library(tidyverse)
 library(ggHoriPlot) 
 library(ggthemes)
+
+```
+
+Load the dataset and calculate the cutpoints and origin:
+
+```{r set}
 
 utils::data(climate_CPH)
 
@@ -42,12 +50,26 @@ cutpoints <- climate_CPH  %>%
   mutate(
     outlier = between(
       AvgTemperature, 
-      quantile(AvgTemperature, 0.25, na.rm=T)-1.5*IQR(AvgTemperature, na.rm=T),
-      quantile(AvgTemperature, 0.75, na.rm=T)+1.5*IQR(AvgTemperature, na.rm=T))) %>% 
+      quantile(AvgTemperature, 0.25, na.rm=T)-
+        1.5*IQR(AvgTemperature, na.rm=T),
+      quantile(AvgTemperature, 0.75, na.rm=T)+
+        1.5*IQR(AvgTemperature, na.rm=T))) %>% 
   filter(outlier)
 
-ori = sum(range(cutpoints$AvgTemperature))/2
-sca <- seq(range(cutpoints$AvgTemperature)[1], range(cutpoints$AvgTemperature)[2], length.out = 7)[-4]
+ori <- sum(range(cutpoints$AvgTemperature))/2
+sca <- seq(range(cutpoints$AvgTemperature)[1], 
+           range(cutpoints$AvgTemperature)[2], 
+           length.out = 7)[-4]
+
+round(ori, 2) # The origin
+
+round(sca, 2) # The horizon scale cutpoints
+
+```
+
+Build the horizon plots in `ggplot2` using `geom_horizon`:
+
+```{r CPH_climate}
 
 climate_CPH %>% ggplot() +
   geom_horizon(aes(date_mine, 
@@ -65,9 +87,19 @@ climate_CPH %>% ggplot() +
     axis.ticks.y = element_blank(),
     panel.border = element_blank()
     ) +
-  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") +
-  xlab('Date')
+  scale_x_date(expand=c(0,0), 
+               date_breaks = "1 month", 
+               date_labels = "%b") +
+  xlab('Date') +
+  ggtitle('Average daily temperature in Copenhagen', 
+          'from 1995 to 2019')
 
 ```
 
+## Learn more
+
+You can check out the full functionality of `ggHoriPlot` in the following guides:
+
+  - [Getting started](https://rivasiker.github.io/ggHoriPlot/articles/ggHoriPlot.html)
+  - [Examples with real data](https://rivasiker.github.io/ggHoriPlot/articles/examples.html)
 
