@@ -87,7 +87,7 @@ plotAllLayers <- function(dat, ori, cutpoints, colors){
 
 ```
 
-We are now all set! By using `geom_horizon` we can add a layer in the `ggplot2` framework to build a horizon plot.
+We are now all set! By using `geom_horizon()` we can add a layer in the `ggplot2` framework to build a horizon plot.
 
 ```{r midpoint_1, fig.height=1, fig.width=8}
 a <- dat_tab %>% 
@@ -98,7 +98,7 @@ a
 
 ```
 
-The default `ggplot2` fill colors might not be the best choice of palette for horizon plots. Instead, we can use the `scale_fill_hcl` function to choose an appropriate color scheme. The default palette will color low values red and large values blue.
+The default `ggplot2` fill colors might not be the best choice of palette for horizon plots. Instead, we can use the `scale_fill_hcl()` function to choose an appropriate color scheme. The default palette will color low values red and large values blue.
 
 ```{r midpoint_2, fig.height=1, fig.width=8}
 a <- dat_tab %>% 
@@ -180,7 +180,7 @@ b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ## Median
 
-The above example with default settings calculates the origin of the horizon plot as the midpoint between the data range. Sometimes, however, we might want to use some other origin for our data. In `ggHoriPlot` this can be achieved by specifying the desired `origin` argument in `geom_horizon`. For example, if we want to use the median as the origin:
+The above example with default settings calculates the origin of the horizon plot as the midpoint between the data range. Sometimes, however, we might want to use some other origin for our data. In `ggHoriPlot` this can be achieved by specifying the desired `origin` argument in `geom_horizon()`. For example, if we want to use the median as the origin:
 
 ```{r median}
 a <- dat_tab %>% 
@@ -353,7 +353,7 @@ b <- plotAllLayers(dat_tab, -298.55, cutpoints_a$cuts, cutpoints_a$color)
 
 ```
 
-For this example the red and blue coloring does not make much sense. Instead, you can choose another hcl palette and specify it in `scale_fill_hcl`. For example, a single-hue palette is much more appropriate:
+For this example the red and blue coloring does not make much sense. Instead, you can choose another hcl palette and specify it in `scale_fill_hcl()`. For example, a single-hue palette is much more appropriate:
 
 
 ```{r min_2}
@@ -386,7 +386,7 @@ b <- plotAllLayers(dat_tab, -298.55, cutpoints_a$cuts, cutpoints_a$color)
 
 ```
 
-You can list all available palettes by running `hcl.pals`. 
+You can list all available palettes by running `hcl.pals()`. 
 
 
 # Changing the horizon scale
@@ -497,7 +497,7 @@ b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ## Interval data
 
-Some data might have starting and end points for x values. If that is the case, the line chart will have a step-like shape. `ggHoriPlot` can also plot this kind of data. We simply need to specify the end coordinates using the `xend` aesthetics inside `geom_horizon`:
+Some data might have starting and end points for x values. If that is the case, the line chart will have a step-like shape. `ggHoriPlot` can also plot this kind of data. We simply need to specify the end coordinates using the `xend` aesthetics inside `geom_horizon()`:
 
 
 ```{r midpoint_with_xend}
@@ -536,7 +536,7 @@ As a side note, xend values need to be different from the following x value, oth
 
 ## Faceting
 
-`ggHoriPlot` can also be used to facet the data, which is specially useful if different time-series need to be compared:
+`ggHoriPlot` can also be used to facet the data, which is specially useful if different time series need to be compared:
 
 ```{r faceting, fig.height=2, fig.width=8}
 tab_tot %>% 
@@ -547,6 +547,36 @@ tab_tot %>%
   scale_fill_hcl()
 
 ```
+
+Note that the cutpoints are calculated per facet separately, so the color of each plot is relative to itself. This can be seen when specifying `fill = ..Cutpoints..`:
+
+
+```{r faceting_cutpoints, fig.height=2, fig.width=8}
+tab_tot %>% 
+  ggplot() +
+  geom_horizon(aes(x = x, y=y, fill = ..Cutpoints..)) +
+  facet_wrap(~type, ncol = 1, scales = 'free_y') +
+  theme_few() +
+  scale_fill_hcl()
+
+```
+
+Here we can sew how there are six different cutpoints per facet. If we wanted to have the same cutpoints for all the facets, we would need to calculate them and supply them in the `horizonscale` argument of `geom_horizon()`:
+
+```{r faceting_calculating_cutpoints, fig.height=2, fig.width=8}
+ori <- sum(range(tab_tot$y))/2
+sca <- seq(range(tab_tot$y)[1], range(tab_tot$y)[2], length.out = 7)[-4]
+
+tab_tot %>% 
+  ggplot() +
+  geom_horizon(aes(x = x, y=y, fill = ..Cutpoints..),
+               origin = ori, horizonscale = sca) +
+  facet_wrap(~type, ncol = 1, scales = 'free_y') +
+  theme_few() +
+  scale_fill_hcl()
+
+```
+
 
 ## Handling outliers
 
@@ -613,7 +643,7 @@ b3 <- plotAllLayers(dat_tab_outlier, 0.07073676, cutpoints_a3$cuts, cutpoints_a3
 (b3/a3) + plot_annotation("origin = 'median', rm.outliers = F")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
-However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell `ggHoriPlot` to remove the outliers by setting the `rm.outliers` argument of `geom_horizon` to `FALSE`:
+However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell `ggHoriPlot` to remove the outliers by setting the `rm.outliers` argument of `geom_horizon()` to `FALSE`:
 
 
 ```{r midpoint_outlier_2_bis}
@@ -729,7 +759,7 @@ b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ## Reversing the values below the origin
 
-Some horizon plots do not reverse the values that are below the origin. If that is the desired output, it can be achieved by setting `reverse=T` in `geom_horizon`:
+Some horizon plots do not reverse the values that are below the origin. If that is the desired output, it can be achieved by setting `reverse=T` in `geom_horizon()`:
 
 ```{r reverse}
 a <- dat_tab %>% 

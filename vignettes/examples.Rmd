@@ -18,8 +18,10 @@ library(ggHoriPlot)
 ```
 
 
-https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv
-https://eagereyes.org/blog/2017/joy-plots
+## Peak time of day for activities
+
+Sports and leisure activities happen at different times during the day (sources: https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv
+https://eagereyes.org/blog/2017/joy-plots). Horizon plots can be used to condense this time series data into a highly informative and easily interpretable chart:
 
 ```{r sports_leisure}
 
@@ -47,7 +49,10 @@ sports_time %>% ggplot() +
 
 ```
 
-https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
+## COVID-19 cases in Asia
+
+COVID-19 cases were recorded in waves across the world (source: https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide). A simple horizon plot is useful for detecting how many waves there have been and when these waves have happened:
+
 
 ```{r covid_19}
 
@@ -77,7 +82,9 @@ COVID %>%
 
 ```
 
+## Simple repeat content
 
+Horizon plots are also useful to plot genomic data, such as simple repeat content along the human genome (source: https://genome.ucsc.edu/cgi-bin/hgTrackUi?g=rmsk):
 
 
 ```{r repeats}
@@ -123,11 +130,10 @@ rmsk %>%
 ```
 
 
-https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities
 
+## Average temperature in 2000 for major US cities
 
-
-Ordering of states taken from https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/
+Changes in the average temperature across several geographic locations can also be condensed in horizon plots. For example, the average temperature during 2000 for major US cities (source: https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities; order of the states:https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/):
 
 ```{r fig.height=15, fig.width=6}
 
@@ -152,11 +158,17 @@ climate_US %>%
     axis.ticks.y = element_blank(),
     panel.border = element_blank(),panel.grid = element_blank()
     ) +
-  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") 
+  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") +
+  xlab('Date') +
+  ggtitle('Average daily temperature of major US cities', 
+          'for the year 2000')
 
 
 ```
 
+## Average temperature in Copenhagen
+
+The average daily temperature can also be plotted by year. For example, in Copenhagen:
 
 ```{r}
 
@@ -170,7 +182,7 @@ cutpoints <- climate_CPH  %>%
       quantile(AvgTemperature, 0.75, na.rm=T)+1.5*IQR(AvgTemperature, na.rm=T))) %>% 
   filter(outlier)
 
-ori = sum(range(cutpoints$AvgTemperature))/2
+ori <- sum(range(cutpoints$AvgTemperature))/2
 sca <- seq(range(cutpoints$AvgTemperature)[1], range(cutpoints$AvgTemperature)[2], length.out = 7)[-4]
   
 
@@ -190,7 +202,12 @@ climate_CPH %>% ggplot() +
     axis.ticks.y = element_blank(),
     panel.border = element_blank()
     ) +
-  scale_x_date(expand=c(0,0), date_breaks = "1 month", date_labels = "%b") 
+  scale_x_date(expand=c(0,0), 
+               date_breaks = "1 month", 
+               date_labels = "%b") +
+  xlab('Date') +
+  ggtitle('Average daily temperature in Copenhagen', 
+          'from 1995 to 2019')
 
 ```
 

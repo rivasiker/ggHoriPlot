@@ -126,7 +126,7 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sca</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># The horizon scale cutpoints</span>
 <span class="co">#&gt; [1] -12.11  -5.88   0.35  12.81  19.05  25.28</span></code></pre></div>
-<p>Build the horizon plots in <code>ggplot2</code> using <code>geom_horizon</code>:</p>
+<p>Build the horizon plots in <code>ggplot2</code> using <code><a href="reference/geom_horizon.html">geom_horizon()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">climate_CPH</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date_mine</span>, 

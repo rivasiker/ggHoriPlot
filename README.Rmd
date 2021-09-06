@@ -67,7 +67,7 @@ round(sca, 2) # The horizon scale cutpoints
 
 ```
 
-Build the horizon plots in `ggplot2` using `geom_horizon`:
+Build the horizon plots in `ggplot2` using `geom_horizon()`:
 
 ```{r CPH_climate}
 
