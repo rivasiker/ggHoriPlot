@@ -163,7 +163,7 @@
   <span class="va">p</span><span class="op">+</span><span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span><span class="op">+</span>
     <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>We are now all set! By using <code>geom_horizon</code> we can add a layer in the <code>ggplot2</code> framework to build a horizon plot.</p>
+<p>We are now all set! By using <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code> we can add a layer in the <code>ggplot2</code> framework to build a horizon plot.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -171,7 +171,7 @@
 
 <span class="va">a</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/midpoint_1-1.png" width="768"></p>
-<p>The default <code>ggplot2</code> fill colors might not be the best choice of palette for horizon plots. Instead, we can use the <code>scale_fill_hcl</code> function to choose an appropriate color scheme. The default palette will color low values red and large values blue.</p>
+<p>The default <code>ggplot2</code> fill colors might not be the best choice of palette for horizon plots. Instead, we can use the <code><a href="../reference/scale_fill_hcl.html">scale_fill_hcl()</a></code> function to choose an appropriate color scheme. The default palette will color low values red and large values blue.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -242,7 +242,7 @@
 <div id="median" class="section level2">
 <h2 class="hasAnchor">
 <a href="#median" class="anchor"></a>Median</h2>
-<p>The above example with default settings calculates the origin of the horizon plot as the midpoint between the data range. Sometimes, however, we might want to use some other origin for our data. In <code>ggHoriPlot</code> this can be achieved by specifying the desired <code>origin</code> argument in <code>geom_horizon</code>. For example, if we want to use the median as the origin:</p>
+<p>The above example with default settings calculates the origin of the horizon plot as the midpoint between the data range. Sometimes, however, we might want to use some other origin for our data. In <code>ggHoriPlot</code> this can be achieved by specifying the desired <code>origin</code> argument in <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code>. For example, if we want to use the median as the origin:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -406,7 +406,7 @@
 
 <span class="op">(</span><span class="va">b</span><span class="op">/</span><span class="va">a</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/min-1.png" width="700"></p>
-<p>For this example the red and blue coloring does not make much sense. Instead, you can choose another hcl palette and specify it in <code>scale_fill_hcl</code>. For example, a single-hue palette is much more appropriate:</p>
+<p>For this example the red and blue coloring does not make much sense. Instead, you can choose another hcl palette and specify it in <code><a href="../reference/scale_fill_hcl.html">scale_fill_hcl()</a></code>. For example, a single-hue palette is much more appropriate:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -435,7 +435,7 @@
 
 <span class="op">(</span><span class="va">b</span><span class="op">/</span><span class="va">a</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/min_2-1.png" width="700"></p>
-<p>You can list all available palettes by running <code>hcl.pals</code>.</p>
+<p>You can list all available palettes by running <code><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.pals()</a></code>.</p>
 </div>
 </div>
 <div id="changing-the-horizon-scale" class="section level1">
@@ -540,7 +540,7 @@
 <div id="interval-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#interval-data" class="anchor"></a>Interval data</h2>
-<p>Some data might have starting and end points for x values. If that is the case, the line chart will have a step-like shape. <code>ggHoriPlot</code> can also plot this kind of data. We simply need to specify the end coordinates using the <code>xend</code> aesthetics inside <code>geom_horizon</code>:</p>
+<p>Some data might have starting and end points for x values. If that is the case, the line chart will have a step-like shape. <code>ggHoriPlot</code> can also plot this kind of data. We simply need to specify the end coordinates using the <code>xend</code> aesthetics inside <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -576,7 +576,7 @@
 <div id="faceting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#faceting" class="anchor"></a>Faceting</h2>
-<p><code>ggHoriPlot</code> can also be used to facet the data, which is specially useful if different time-series need to be compared:</p>
+<p><code>ggHoriPlot</code> can also be used to facet the data, which is specially useful if different time series need to be compared:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab_tot</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -585,12 +585,34 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/faceting-1.png" width="768"></p>
+<p>Note that the cutpoints are calculated per facet separately, so the color of each plot is relative to itself. This can be seen when specifying <code>fill = ..Cutpoints..</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tab_tot</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y<span class="op">=</span><span class="va">y</span>, fill <span class="op">=</span> <span class="va">..Cutpoints..</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">'free_y'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="ggHoriPlot_files/figure-html/faceting_cutpoints-1.png" width="768"></p>
+<p>Here we can sew how there are six different cutpoints per facet. If we wanted to have the same cutpoints for all the facets, we would need to calculate them and supply them in the <code>horizonscale</code> argument of <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code>:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">tab_tot</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
+<span class="va">sca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">tab_tot</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">tab_tot</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, length.out <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">4</span><span class="op">]</span>
+
+<span class="va">tab_tot</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y<span class="op">=</span><span class="va">y</span>, fill <span class="op">=</span> <span class="va">..Cutpoints..</span><span class="op">)</span>,
+               origin <span class="op">=</span> <span class="va">ori</span>, horizonscale <span class="op">=</span> <span class="va">sca</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">'free_y'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="ggHoriPlot_files/figure-html/faceting_calculating_cutpoints-1.png" width="768"></p>
 </div>
 <div id="handling-outliers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#handling-outliers" class="anchor"></a>Handling outliers</h2>
 <p>Outliers or very prominent peaks and valleys might greatly distort a horizon plot making it hard to interpret. For example:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">300</span>
 <span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">0.1</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="fl">50</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">150</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">dat_tab_outlier</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
@@ -619,7 +641,7 @@
 
 <span class="op">(</span><span class="va">b1</span><span class="op">/</span><span class="va">a1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="st">"origin = 'midpoint', rm.outliers = F"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_1-1.png" width="700"> We might want to use the median instead of the default midpoint to balance the effect of the outlier:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a3</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span>
@@ -645,8 +667,8 @@
 <span class="va">b3</span> <span class="op">&lt;-</span> <span class="fu">plotAllLayers</span><span class="op">(</span><span class="va">dat_tab_outlier</span>, <span class="fl">0.07073676</span>, <span class="va">cutpoints_a3</span><span class="op">$</span><span class="va">cuts</span>, <span class="va">cutpoints_a3</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">b3</span><span class="op">/</span><span class="va">a3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="st">"origin = 'median', rm.outliers = F"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2-1.png" width="700"> However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell <code>ggHoriPlot</code> to remove the outliers by setting the <code>rm.outliers</code> argument of <code>geom_horizon</code> to <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2-1.png" width="700"> However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell <code>ggHoriPlot</code> to remove the outliers by setting the <code>rm.outliers</code> argument of <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code> to <code>FALSE</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a2</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span>
@@ -678,7 +700,7 @@
 <p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2_bis-1.png" width="700"></p>
 <p>Ths will remove values below the 0.25 quantile - 1.5 times the interquartile range and above the 0.75 quantile + 1.5 times the interquartile range.</p>
 <p>Another option would be to use a curtom horizon scale, such as the one below:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a4</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span>
@@ -712,7 +734,7 @@
 <h2 class="hasAnchor">
 <a href="#handling-of-missing-data" class="anchor"></a>Handling of missing data</h2>
 <p>Missing data is removed from the plot:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">300</span>
 <span class="va">y</span> <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">0.1</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span>
 <span class="va">dat_tab_na</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
@@ -753,8 +775,8 @@
 <div id="reversing-the-values-below-the-origin" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reversing-the-values-below-the-origin" class="anchor"></a>Reversing the values below the origin</h2>
-<p>Some horizon plots do not reverse the values that are below the origin. If that is the desired output, it can be achieved by setting <code>reverse=T</code> in <code>geom_horizon</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p>Some horizon plots do not reverse the values that are below the origin. If that is the desired output, it can be achieved by setting <code>reverse=T</code> in <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code>:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span>
@@ -789,7 +811,7 @@
 <h2 class="hasAnchor">
 <a href="#mirroring-the-horizon-plot" class="anchor"></a>Mirroring the horizon plot</h2>
 <p>If you cant to mirror the horizon plot, you can do so by setting <code>mirror</code> to <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span>

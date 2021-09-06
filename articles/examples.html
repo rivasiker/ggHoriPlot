@@ -98,7 +98,10 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rivasiker.github.io/ggHoriPlot/">ggHoriPlot</a></span><span class="op">)</span></code></pre></div>
-<p><a href="https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv" class="uri">https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv</a> <a href="https://eagereyes.org/blog/2017/joy-plots" class="uri">https://eagereyes.org/blog/2017/joy-plots</a></p>
+<div id="peak-time-of-day-for-activities" class="section level2">
+<h2 class="hasAnchor">
+<a href="#peak-time-of-day-for-activities" class="anchor"></a>Peak time of day for activities</h2>
+<p>Sports and leisure activities happen at different times during the day (sources: <a href="https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv" class="uri">https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv</a> <a href="https://eagereyes.org/blog/2017/joy-plots" class="uri">https://eagereyes.org/blog/2017/joy-plots</a>). Horizon plots can be used to condense this time series data into a highly informative and easily interpretable chart:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sports_time</span><span class="op">)</span>
 
@@ -122,7 +125,11 @@
     labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%02d:00"</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">x</span> <span class="op">%%</span> <span class="fl">24</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Peak time of day for sports and leisure'</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/sports_leisure-1.png" width="700"></p>
-<p><a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide" class="uri">https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide</a></p>
+</div>
+<div id="covid-19-cases-in-asia" class="section level2">
+<h2 class="hasAnchor">
+<a href="#covid-19-cases-in-asia" class="anchor"></a>COVID-19 cases in Asia</h2>
+<p>COVID-19 cases were recorded in waves across the world (source: <a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide" class="uri">https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide</a>). A simple horizon plot is useful for detecting how many waves there have been and when these waves have happened:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">COVID</span><span class="op">)</span>
 
@@ -148,6 +155,11 @@
           <span class="st">'in Asia, 2020'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/covid_19-1.png" width="700"></p>
+</div>
+<div id="simple-repeat-content" class="section level2">
+<h2 class="hasAnchor">
+<a href="#simple-repeat-content" class="anchor"></a>Simple repeat content</h2>
+<p>Horizon plots are also useful to plot genomic data, such as simple repeat content along the human genome (source: <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?g=rmsk" class="uri">https://genome.ucsc.edu/cgi-bin/hgTrackUi?g=rmsk</a>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmsk</span><span class="op">)</span>
 
@@ -187,8 +199,11 @@
   <span class="fu">xlab</span><span class="op">(</span><span class="st">'Position'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">guides</span><span class="op">(</span>fill<span class="op">=</span><span class="fu">guide_legend</span><span class="op">(</span>title<span class="op">=</span><span class="st">"% of repeats"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/repeats-1.png" width="700"></p>
-<p><a href="https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities" class="uri">https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities</a></p>
-<p>Ordering of states taken from <a href="https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/" class="uri">https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/</a></p>
+</div>
+<div id="average-temperature-in-2000-for-major-us-cities" class="section level2">
+<h2 class="hasAnchor">
+<a href="#average-temperature-in-2000-for-major-us-cities" class="anchor"></a>Average temperature in 2000 for major US cities</h2>
+<p>Changes in the average temperature across several geographic locations can also be condensed in horizon plots. For example, the average temperature during 2000 for major US cities (source: <a href="https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities" class="uri">https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities</a>; order of the states:<a href="https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/" class="uri">https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/</a>):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span>
 
@@ -211,8 +226,16 @@
     axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
     panel.border <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,panel.grid <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> </code></pre></div>
+  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Average daily temperature of major US cities'</span>, 
+          <span class="st">'for the year 2000'</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="576"></p>
+</div>
+<div id="average-temperature-in-copenhagen" class="section level2">
+<h2 class="hasAnchor">
+<a href="#average-temperature-in-copenhagen" class="anchor"></a>Average temperature in Copenhagen</h2>
+<p>The average daily temperature can also be plotted by year. For example, in Copenhagen:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
 
@@ -224,7 +247,7 @@
       <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, <span class="fl">0.75</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">+</span><span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">AvgTemperature</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">outlier</span><span class="op">)</span>
 
-<span class="va">ori</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
+<span class="va">ori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
 <span class="va">sca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cutpoints</span><span class="op">$</span><span class="va">AvgTemperature</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, length.out <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">4</span><span class="op">]</span>
   
 
@@ -244,13 +267,21 @@
     axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
     panel.border <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> </code></pre></div>
+  <span class="fu">scale_x_date</span><span class="op">(</span>expand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, 
+               date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, 
+               date_labels <span class="op">=</span> <span class="st">"%b"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Average daily temperature in Copenhagen'</span>, 
+          <span class="st">'from 1995 to 2019'</span><span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
