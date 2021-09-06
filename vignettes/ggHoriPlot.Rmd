@@ -1,7 +1,10 @@
 ---
 title: "ggHoriPlot"
+author: "Iker Rivas-González"
 output: 
   rmarkdown::html_vignette:
+    fig_height: 5
+    fig_width: 7
     toc: true
 vignette: >
   %\VignetteIndexEntry{ggHoriPlot}
@@ -89,7 +92,7 @@ plotAllLayers <- function(dat, ori, cutpoints, colors){
 
 We are now all set! By using `geom_horizon()` we can add a layer in the `ggplot2` framework to build a horizon plot.
 
-```{r midpoint_1, fig.height=1, fig.width=8}
+```{r midpoint_1, fig.height=1, fig.width=7}
 a <- dat_tab %>% 
   ggplot() +
   geom_horizon(aes(x = x, y=y)) 
@@ -100,7 +103,7 @@ a
 
 The default `ggplot2` fill colors might not be the best choice of palette for horizon plots. Instead, we can use the `scale_fill_hcl()` function to choose an appropriate color scheme. The default palette will color low values red and large values blue.
 
-```{r midpoint_2, fig.height=1, fig.width=8}
+```{r midpoint_2, fig.height=1, fig.width=7}
 a <- dat_tab %>% 
   ggplot() +
   geom_horizon(aes(x = x, y=y)) +
@@ -538,7 +541,7 @@ As a side note, xend values need to be different from the following x value, oth
 
 `ggHoriPlot` can also be used to facet the data, which is specially useful if different time series need to be compared:
 
-```{r faceting, fig.height=2, fig.width=8}
+```{r faceting, fig.height=2, fig.width=7}
 tab_tot %>% 
   ggplot() +
   geom_horizon(aes(x = x, y=y)) +
@@ -551,7 +554,7 @@ tab_tot %>%
 Note that the cutpoints are calculated per facet separately, so the color of each plot is relative to itself. This can be seen when specifying `fill = ..Cutpoints..`:
 
 
-```{r faceting_cutpoints, fig.height=2, fig.width=8}
+```{r faceting_cutpoints, fig.height=2, fig.width=7}
 tab_tot %>% 
   ggplot() +
   geom_horizon(aes(x = x, y=y, fill = ..Cutpoints..)) +
@@ -563,7 +566,7 @@ tab_tot %>%
 
 Here we can sew how there are six different cutpoints per facet. If we wanted to have the same cutpoints for all the facets, we would need to calculate them and supply them in the `horizonscale` argument of `geom_horizon()`:
 
-```{r faceting_calculating_cutpoints, fig.height=2, fig.width=8}
+```{r faceting_calculating_cutpoints, fig.height=2, fig.width=7}
 ori <- sum(range(tab_tot$y))/2
 sca <- seq(range(tab_tot$y)[1], range(tab_tot$y)[2], length.out = 7)[-4]
 

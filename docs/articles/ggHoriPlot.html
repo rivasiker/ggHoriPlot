@@ -83,6 +83,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggHoriPlot</h1>
+                        <h4 class="author">Iker Rivas-González</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/rivasiker/ggHoriPlot/blob/master/vignettes/ggHoriPlot.Rmd"><code>vignettes/ggHoriPlot.Rmd</code></a></small>
@@ -170,7 +171,7 @@
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y<span class="op">=</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> 
 
 <span class="va">a</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_1-1.png" width="768"></p>
+<p><img src="ggHoriPlot_files/figure-html/midpoint_1-1.png" width="672"></p>
 <p>The default <code>ggplot2</code> fill colors might not be the best choice of palette for horizon plots. Instead, we can use the <code><a href="../reference/scale_fill_hcl.html">scale_fill_hcl()</a></code> function to choose an appropriate color scheme. The default palette will color low values red and large values blue.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
@@ -180,7 +181,7 @@
   <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">a</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_2-1.png" width="768"></p>
+<p><img src="ggHoriPlot_files/figure-html/midpoint_2-1.png" width="672"></p>
 <p>To understand how horizon plots are related to line charts, we can plot both side by side.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
@@ -584,7 +585,7 @@
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">'free_y'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/faceting-1.png" width="768"></p>
+<p><img src="ggHoriPlot_files/figure-html/faceting-1.png" width="672"></p>
 <p>Note that the cutpoints are calculated per facet separately, so the color of each plot is relative to itself. This can be seen when specifying <code>fill = ..Cutpoints..</code>:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab_tot</span> <span class="op">%&gt;%</span> 
@@ -593,7 +594,7 @@
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">'free_y'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/faceting_cutpoints-1.png" width="768"></p>
+<p><img src="ggHoriPlot_files/figure-html/faceting_cutpoints-1.png" width="672"></p>
 <p>Here we can sew how there are six different cutpoints per facet. If we wanted to have the same cutpoints for all the facets, we would need to calculate them and supply them in the <code>horizonscale</code> argument of <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code>:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">tab_tot</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>
@@ -606,7 +607,7 @@
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">'free_y'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/scale_fill_hcl.html">scale_fill_hcl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/faceting_calculating_cutpoints-1.png" width="768"></p>
+<p><img src="ggHoriPlot_files/figure-html/faceting_calculating_cutpoints-1.png" width="672"></p>
 </div>
 <div id="handling-outliers" class="section level2">
 <h2 class="hasAnchor">

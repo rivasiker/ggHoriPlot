@@ -1,8 +1,10 @@
 ---
 title: "Examples with real data"
 author: "Iker Rivas-González"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    fig_height: 5
+    fig_width: 7
 vignette: >
   %\VignetteIndexEntry{Examples with real data}
   %\VignetteEngine{knitr::rmarkdown}
