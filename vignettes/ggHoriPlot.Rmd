@@ -25,11 +25,14 @@ This vignette goes through all the functionality of the package. If you want to 
 
 The data used through this vignette are tables with sine waves, which aims to mimic time-series data. The data looks like this: 
 
-```{r data}
+```{r setup, message=FALSE}
 library(tidyverse)
 library(patchwork)
 library(ggthemes)
 
+```
+
+```{r data}
 x = 1:300
 y = x * sin(0.1 * x)
 dat_tab <- tibble(x = x,

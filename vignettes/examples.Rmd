@@ -11,8 +11,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r loading, message=FALSE}
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
+```{r setup, message=FALSE}
 library(tidyverse)
 library(ggthemes)
 library(ggHoriPlot)
