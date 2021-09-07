@@ -1,6 +1,6 @@
 Type: Package
 Package: ggHoriPlot
-Title: Horizon Plots for ggplot2
+Title: Horizon Plots for 'ggplot2'
 Version: 1.0.0
 Authors@R: 
     person(given = "Iker",
@@ -10,7 +10,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0515-0628"))
 Maintainer: Iker Rivas-González <ikerrivas96@gmail.com>
 Description: A user-friendly, highly customizable R package for building
-    horizon plots in the ggplot2 environment.
+    horizon plots in the 'ggplot2' environment.
 License: GPL-3
 URL: https://rivasiker.github.io/ggHoriPlot/,
     https://github.com/rivasiker/ggHoriPlot
