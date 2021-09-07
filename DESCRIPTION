@@ -1,7 +1,7 @@
 Package: ggHoriPlot
 Type: Package
 Title: Horizon Plots for ggplot2
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
     person("Iker", 
            "Rivas-González", 
