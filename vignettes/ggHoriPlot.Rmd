@@ -258,7 +258,7 @@ b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ## User-specified
 
-Alternatively, the orgin might also be a manually chosen number:
+Alternatively, the origin might also be a manually chosen number:
 
 ```{r integer}
 a <- dat_tab %>% 
@@ -535,7 +535,7 @@ b/a+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
 
-As a side note, xend values need to be different from the following x value, otherwise `ggHoriPlot` might not work properly. If this is not the case, try substracting a small value to xend.
+As a side note, xend values need to be different from the following x value, otherwise `ggHoriPlot` might not work properly. If this is not the case, try subtracting a small value to xend.
 
 ## Faceting
 
@@ -682,9 +682,9 @@ b2 <- plotAllLayers(dat_tab_outlier, 0.03362305, cutpoints_a2$cuts, cutpoints_a2
 
 ```
 
-Ths will remove values below the 0.25 quantile - 1.5 times the interquartile range and above the 0.75 quantile + 1.5 times the interquartile range. 
+This will remove values below the 0.25 quantile - 1.5 times the interquartile range and above the 0.75 quantile + 1.5 times the interquartile range. 
 
-Another option would be to use a curtom horizon scale, such as the one below:
+Another option would be to use a custom horizon scale, such as the one below:
 
 ```{r custom_horizonscale}
 a4 <- dat_tab_outlier %>% 

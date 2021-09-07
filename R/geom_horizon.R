@@ -1,7 +1,7 @@
 
-#' Horizon plot
+#' Horizon plots
 #'
-#' This is a horizon plot
+#' This function builds horizon plots in ggplot2.
 #'
 #' @eval ggplot2:::rd_orientation()
 #'
@@ -18,14 +18,20 @@
 #'
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_bar
-#' @param origin Origin of the horizon plot. It can either be a string, namely \code{"midpoint"} (the default), \code{"median"},
+#' @param origin Origin of the horizon plot. It can either be a string, namely
+#' \code{"midpoint"} (the default), \code{"median"},
 #' \code{"mean"}, \code{"min"} or \code{"quantiles"}, or a user-specified number.
-#' @param horizonscale Cutpoints of the horizon plot. It can either be an integer specifying the number of ranges (default is \code{6}),
+#' @param horizonscale Cutpoints of the horizon plot. It can either be an integer
+#' specifying the number of ranges (default is \code{6}),
 #' or a user-supplied numeric vector with the cutpoints defining the different ranges.
-#' @param rm.outliers If \code{TRUE}, all the values below \code{quantile(y, 0.25)-1.5*IQR(y)} and above
-#' \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint calculations (default is \code{FALSE}).
-#' @param reverse If \code{TRUE}, the horizon peaks for the values below the origin are reversed (default is \code{FALSE}).
-#' @param mirror If \code{TRUE}, the horizon peaks for all the values are reversed (default is \code{FALSE}).
+#' @param rm.outliers If \code{TRUE}, all the values below \code{quantile(y, 0.25)-1.5*IQR(y)}
+#' and above \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and cutpoint
+#' calculations (default is \code{FALSE}). @param reverse If \code{TRUE}, the horizon peaks
+#' for the values below the origin are reversed (default is \code{FALSE}).
+#' @param reverse \code{TRUE}, the horizon peaks for all the values below the origin
+#' are reversed (default is \code{FALSE}).
+#' @param mirror If \code{TRUE}, the horizon peaks for all the values are reversed
+#' (default is \code{FALSE}).
 #'
 #' @examples
 #' # Generate data
@@ -50,7 +56,7 @@
 #'   scale_fill_hcl()
 #'
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 layer ggproto aes GeomRibbon
 #'
 #' @export
 
@@ -60,6 +66,11 @@ geom_horizon <- function(mapping = NULL, data = NULL,
                          ...,
                          na.rm = FALSE,
                          show.legend = TRUE,
+                         origin = 'midpoint',
+                         horizonscale = 6,
+                         rm.outliers = FALSE,
+                         reverse = FALSE,
+                         mirror = FALSE,
                          inherit.aes = TRUE) {
   layer(
     data = data,
@@ -71,11 +82,20 @@ geom_horizon <- function(mapping = NULL, data = NULL,
     inherit.aes = inherit.aes,
     params = list(
       na.rm = na.rm,
+      origin = origin,
+      horizonscale = horizonscale,
+      rm.outliers = rm.outliers,
+      reverse = reverse,
+      mirror = mirror,
       ...)
   )
 }
 
-#' @noRd
+#' @rdname geom_horizon
+#' @format NULL
+#' @usage NULL
+#' @importFrom ggplot2 ggproto GeomRibbon aes
+#' @export
 
 GeomHorizon <- ggproto("GeomHorizon", GeomRibbon,
                        default_aes = aes(colour = NA, fill = NA,

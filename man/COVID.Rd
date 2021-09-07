@@ -19,6 +19,7 @@ A data frame with 12,695 rows and 3 variables:
 COVID
 }
 \description{
-A dataset containing the geographic distribution of COVID-19 cases in Asia during 2020.
+A dataset containing the geographic distribution of
+COVID-19 cases in Asia during 2020.
 }
 \keyword{datasets}

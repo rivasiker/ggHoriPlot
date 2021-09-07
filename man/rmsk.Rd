@@ -20,6 +20,7 @@ A data frame with 30,885 rows and 4 variables:
 rmsk
 }
 \description{
-A dataset containing the percentage of simple repeats in 100 kb windows along the human genome (hg38).
+A dataset containing the percentage of simple repeats
+in 100 kb windows along the human genome (hg38).
 }
 \keyword{datasets}

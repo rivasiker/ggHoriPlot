@@ -7,7 +7,8 @@
 posneg(y, origin, vec)
 }
 \description{
-This function calculates the different positive and negative boundaries for each data point
+This function calculates the different positive and
+negative boundaries for each data point
 based on the origin and the cutpoint vector provided.
 }
 \keyword{internal}

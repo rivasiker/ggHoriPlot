@@ -1,15 +1,16 @@
 
 test_that("NAs are not dropped from the data", {
-  df <- tibble(x = 1:5, y = c(1, 2, NA, 4, 5))
+  df <- data.frame(x = 1:5, y = c(1, 2, NA, 4, 5))
 
   p <- ggplot(df, aes(x, y))+geom_horizon()
 
-  expect_equal(sum(is.na(layer_data(p)$ymax)), length(unique(layer_data(p)$group)))
+  expect_equal(sum(is.na(layer_data(p)$ymax)),
+               length(unique(layer_data(p)$group)))
 })
 
 
 test_that("Outliers are removed", {
-  df <- tibble(x = 1:5, y = c(1, 2, 66, 4, 5))
+  df <- data.frame(x = 1:5, y = c(1, 2, 66, 4, 5))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(rm.outliers = T)
 
@@ -18,7 +19,7 @@ test_that("Outliers are removed", {
 
 
 test_that("The origin is valid", {
-  df <- tibble(x = 1:5, y = c(1, 2, 3, 4, 5))
+  df <- data.frame(x = 1:5, y = c(1, 2, 3, 4, 5))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'origin')
 
@@ -26,7 +27,7 @@ test_that("The origin is valid", {
 })
 
 test_that("The horizonscale is valid", {
-  df <- tibble(x = 1:5, y = c(1, 2, 3, 4, 5))
+  df <- data.frame(x = 1:5, y = c(1, 2, 3, 4, 5))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(horizonscale = 'horizonscale')
 
@@ -34,16 +35,18 @@ test_that("The horizonscale is valid", {
 })
 
 test_that("The quantiles origin has a valid horizonscale", {
-  df <- tibble(x = 1:5, y = c(1, 2, 3, 4, 5))
+  df <- data.frame(x = 1:5, y = c(1, 2, 3, 4, 5))
 
-  p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'quantiles', horizonscale = 2.5)
+  p <- ggplot(df, aes(x, y))+
+    geom_horizon(origin = 'quantiles', horizonscale = 2.5)
 
-  expect_warning(print(p), "positive integer when using origin = 'quantiles'")
+  expect_warning(print(p),
+                 "positive integer when using origin = 'quantiles'")
 })
 
 
 test_that("The midpoint origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'midpoint')
 
@@ -53,17 +56,17 @@ test_that("The midpoint origin works", {
 })
 
 test_that("The mean origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'mean')
 
   expect_equal(levels(layer_data(p)$Cutpoints),
-               c("[6.56667, 7.9)",     "[5.23333, 6.56667)", "[3.9, 5.23333)",
-                 "[2.56667, 3.9)",     "[1.23333, 2.56667)", "[-0.1, 1.23333)" ))
+               c("[6.56667, 7.9)", "[5.23333, 6.56667)", "[3.9, 5.23333)",
+                 "[2.56667, 3.9)", "[1.23333, 2.56667)", "[-0.1, 1.23333)" ))
 })
 
 test_that("The median origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'median')
 
@@ -73,7 +76,7 @@ test_that("The median origin works", {
 })
 
 test_that("The cutpoints of min origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'min')
 
@@ -83,7 +86,7 @@ test_that("The cutpoints of min origin works", {
 })
 
 test_that("The category assignment of min origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'min')
 
@@ -92,7 +95,7 @@ test_that("The category assignment of min origin works", {
 })
 
 test_that("The quantiles origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 'quantiles')
 
@@ -102,7 +105,7 @@ test_that("The quantiles origin works", {
 })
 
 test_that("The numeric origin works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(origin = 3)
 
@@ -112,7 +115,7 @@ test_that("The numeric origin works", {
 })
 
 test_that("The integer horizonscale works", {
-  df <- tibble(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+  df <- data.frame(x = 1:10, y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x, y))+geom_horizon(horizonscale = 10)
 
@@ -121,8 +124,8 @@ test_that("The integer horizonscale works", {
 })
 
 test_that("The processed table has the right dimensions", {
-  df <- tibble(x = 1:10,
-               xend = x+0.999,
+  df <- data.frame(x = 1:10,
+               xend = (1:10)+0.999,
                y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x = x, y = y))+geom_horizon()
@@ -133,8 +136,8 @@ test_that("The processed table has the right dimensions", {
 
 
 test_that("The processed table has the right dimensions with xend", {
-  df <- tibble(x = 1:10,
-               xend = x+0.999,
+  df <- data.frame(x = 1:10,
+               xend = (1:10)+0.999,
                y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
 
   p <- ggplot(df, aes(x = x, xend = xend, y = y))+geom_horizon()

@@ -15,7 +15,7 @@ A data frame with 57,828 rows and 9 variables:
   \item{Day}{day}
   \item{Year}{year}
   \item{AvgTemperature}{average temperature in Fahrenheit}
-  \item{date_mine}{data in yyy-mm-dd format}
+  \item{date_mine}{data in yyyy-mm-dd format}
 }
 }
 \source{
@@ -27,6 +27,7 @@ A data frame with 57,828 rows and 9 variables:
 climate_US
 }
 \description{
-A dataset containing the average temperature in Fahrenheit for major cities in the US for the year 2000.
+A dataset containing the average temperature in Fahrenheit
+for major cities in the US for the year 2000.
 }
 \keyword{datasets}
