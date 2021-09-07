@@ -474,7 +474,8 @@
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">plotAllLayers</span><span class="op">(</span><span class="va">dat_tab</span>, <span class="va">mid</span>, <span class="va">cutpoints</span><span class="op">$</span><span class="va">cuts</span>, <span class="va">cutpoints</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>
 
 <span class="va">b</span><span class="op">/</span><span class="va">a</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_n5-1.png" width="700"> or 10 intervals instead:</p>
+<p><img src="ggHoriPlot_files/figure-html/midpoint_n5-1.png" width="700"></p>
+<p>or 10 intervals instead:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -644,7 +645,8 @@
 <span class="va">b1</span> <span class="op">&lt;-</span> <span class="fu">plotAllLayers</span><span class="op">(</span><span class="va">dat_tab_outlier</span>, <span class="fl">4.811927</span>, <span class="va">cutpoints_a1</span><span class="op">$</span><span class="va">cuts</span>, <span class="va">cutpoints_a1</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">b1</span><span class="op">/</span><span class="va">a1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="st">"origin = 'midpoint', rm.outliers = F"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_1-1.png" width="700"> We might want to use the median instead of the default midpoint to balance the effect of the outlier:</p>
+<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_1-1.png" width="700"></p>
+<p>We might want to use the median instead of the default midpoint to balance the effect of the outlier:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a3</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -671,7 +673,8 @@
 <span class="va">b3</span> <span class="op">&lt;-</span> <span class="fu">plotAllLayers</span><span class="op">(</span><span class="va">dat_tab_outlier</span>, <span class="fl">0.07073676</span>, <span class="va">cutpoints_a3</span><span class="op">$</span><span class="va">cuts</span>, <span class="va">cutpoints_a3</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">b3</span><span class="op">/</span><span class="va">a3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="st">"origin = 'median', rm.outliers = F"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2-1.png" width="700"> However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell <code>ggHoriPlot</code> to remove the outliers by setting the <code>rm.outliers</code> argument of <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code> to <code>FALSE</code>:</p>
+<p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2-1.png" width="700"></p>
+<p>However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell <code>ggHoriPlot</code> to remove the outliers by setting the <code>rm.outliers</code> argument of <code><a href="../reference/geom_horizon.html">geom_horizon()</a></code> to <code>FALSE</code>:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a2</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
