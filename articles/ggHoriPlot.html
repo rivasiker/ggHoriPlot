@@ -61,6 +61,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -315,7 +318,7 @@
 <div id="user-specified" class="section level2">
 <h2 class="hasAnchor">
 <a href="#user-specified" class="anchor"></a>User-specified</h2>
-<p>Alternatively, the orgin might also be a manually chosen number:</p>
+<p>Alternatively, the origin might also be a manually chosen number:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">dat_tab</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -572,7 +575,7 @@
 
 <span class="va">b</span><span class="op">/</span><span class="va">a</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/midpoint_with_xend-1.png" width="700"></p>
-<p>As a side note, xend values need to be different from the following x value, otherwise <code>ggHoriPlot</code> might not work properly. If this is not the case, try substracting a small value to xend.</p>
+<p>As a side note, xend values need to be different from the following x value, otherwise <code>ggHoriPlot</code> might not work properly. If this is not the case, try subtracting a small value to xend.</p>
 </div>
 <div id="faceting" class="section level2">
 <h2 class="hasAnchor">
@@ -699,8 +702,8 @@
 
 <span class="op">(</span><span class="va">b2</span><span class="op">/</span><span class="va">a2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="st">"origin = 'median', rm.outliers = T"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">'collect'</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggHoriPlot_files/figure-html/midpoint_outlier_2_bis-1.png" width="700"></p>
-<p>Ths will remove values below the 0.25 quantile - 1.5 times the interquartile range and above the 0.75 quantile + 1.5 times the interquartile range.</p>
-<p>Another option would be to use a curtom horizon scale, such as the one below:</p>
+<p>This will remove values below the 0.25 quantile - 1.5 times the interquartile range and above the 0.75 quantile + 1.5 times the interquartile range.</p>
+<p>Another option would be to use a custom horizon scale, such as the one below:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a4</span> <span class="op">&lt;-</span> <span class="va">dat_tab_outlier</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>

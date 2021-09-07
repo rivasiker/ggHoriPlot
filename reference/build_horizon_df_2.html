@@ -102,6 +102,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -143,26 +146,32 @@
     </tr>
     <tr>
       <th>origin</th>
-      <td><p>Origin of the horizon plot. It can either be a string, namely <code>"midpoint"</code> (the default), <code>"median"</code>,
+      <td><p>Origin of the horizon plot. It can either be a string, namely
+<code>"midpoint"</code> (the default), <code>"median"</code>,
 <code>"mean"</code>, <code>"min"</code> or <code>"quantiles"</code>, or a user-specified number.</p></td>
     </tr>
     <tr>
       <th>horizonscale</th>
-      <td><p>Cutpoints of the horizon plot. It can either be an integer specifying the number of ranges (default is <code>6</code>),
+      <td><p>Cutpoints of the horizon plot. It can either be an integer
+specifying the number of ranges (default is <code>6</code>),
 or a user-supplied numeric vector with the cutpoints defining the different ranges.</p></td>
     </tr>
     <tr>
       <th>rm.outliers</th>
-      <td><p>If <code>TRUE</code>, all the values below <code>quantile(y, 0.25)-1.5*IQR(y)</code> and above
-<code>quantile(y, 0.75)+1.5*IQR(y)</code> are excluded from the origin and cutpoint calculations (default is <code>FALSE</code>).</p></td>
+      <td><p>If <code>TRUE</code>, all the values below <code>quantile(y, 0.25)-1.5*IQR(y)</code>
+and above <code>quantile(y, 0.75)+1.5*IQR(y)</code> are excluded from the origin and cutpoint
+calculations (default is <code>FALSE</code>). @param reverse If <code>TRUE</code>, the horizon peaks
+for the values below the origin are reversed (default is <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>reverse</th>
-      <td><p>If <code>TRUE</code>, the horizon peaks for the values below the origin are reversed (default is <code>FALSE</code>).</p></td>
+      <td><p><code>TRUE</code>, the horizon peaks for all the values below the origin
+are reversed (default is <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>mirror</th>
-      <td><p>If <code>TRUE</code>, the horizon peaks for all the values are reversed (default is <code>FALSE</code>).</p></td>
+      <td><p>If <code>TRUE</code>, the horizon peaks for all the values are reversed
+(default is <code>FALSE</code>).</p></td>
     </tr>
     </table>
 
