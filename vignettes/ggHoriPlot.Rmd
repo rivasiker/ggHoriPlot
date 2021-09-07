@@ -426,6 +426,7 @@ b <- plotAllLayers(dat_tab, mid, cutpoints$cuts, cutpoints$color)
 b/a+ plot_layout(guides = 'collect', heights = c(5, 1))
 
 ```
+
 or 10 intervals instead:
 
 ```{r midpoint_n10}
@@ -615,6 +616,7 @@ b1 <- plotAllLayers(dat_tab_outlier, 4.811927, cutpoints_a1$cuts, cutpoints_a1$c
 (b1/a1) + plot_annotation("origin = 'midpoint', rm.outliers = F")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
+
 We might want to use the median instead of the default midpoint to balance the effect of the outlier:
 
 
@@ -646,6 +648,7 @@ b3 <- plotAllLayers(dat_tab_outlier, 0.07073676, cutpoints_a3$cuts, cutpoints_a3
 (b3/a3) + plot_annotation("origin = 'median', rm.outliers = F")+ plot_layout(guides = 'collect', heights = c(6, 1))
 
 ```
+
 However, the horizon scale still renders the horizon plot difficult to interpret. Instead, we can tell `ggHoriPlot` to remove the outliers by setting the `rm.outliers` argument of `geom_horizon()` to `FALSE`:
 
 
