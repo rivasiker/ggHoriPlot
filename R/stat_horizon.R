@@ -7,6 +7,29 @@
 #' @inheritParams geom_horizon
 #' @param geom Used geom, default to 'ribbon'
 #'
+#'
+#' @examples
+#' # Generate data
+#' huron <- data.frame(year = 1875:1972, level = as.vector(LakeHuron))
+#'
+#' # Basic plot with default colors
+#' h <- ggplot(huron) + stat_horizon(aes(year, level))
+#'
+#' # Add color scheme
+#' h + theme_void() + scale_fill_hcl()
+#'
+#' # Add cupoints
+#' ggplot(huron) +
+#'   stat_horizon(aes(year, level, fill = ..Cutpoints..)) +
+#'   theme_void() +
+#'   scale_fill_hcl()
+#'
+#' # Reverse negative ranges
+#' ggplot(huron) +
+#'   stat_horizon(aes(year, level, fill = ..Cutpoints..), reverse = TRUE) +
+#'   theme_void() +
+#'   scale_fill_hcl()
+#'
 #' @importFrom ggplot2 layer
 #'
 #' @export
