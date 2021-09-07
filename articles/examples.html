@@ -105,7 +105,8 @@
 <a href="#peak-time-of-day-for-activities" class="anchor"></a>Peak time of day for activities</h2>
 <p>Sports and leisure activities happen at different times during the day (sources: <a href="https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv" class="uri">https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv</a> <a href="https://eagereyes.org/blog/2017/joy-plots" class="uri">https://eagereyes.org/blog/2017/joy-plots</a>). Horizon plots can be used to condense this time series data into a highly informative and easily interpretable chart:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sports_time</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sports_time</span><span class="op">)</span>
 
 <span class="va">sports_time</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">time</span><span class="op">/</span><span class="fl">60</span>, <span class="va">p</span><span class="op">)</span>, origin <span class="op">=</span> <span class="st">'min'</span>, horizonscale <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
@@ -133,7 +134,8 @@
 <a href="#covid-19-cases-in-asia" class="anchor"></a>COVID-19 cases in Asia</h2>
 <p>COVID-19 cases were recorded in waves across the world (source: <a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide" class="uri">https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide</a>). A simple horizon plot is useful for detecting how many waves there have been and when these waves have happened:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">COVID</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">COVID</span><span class="op">)</span>
 
 
 <span class="va">COVID</span> <span class="op">%&gt;%</span>  
@@ -163,7 +165,8 @@
 <a href="#simple-repeat-content" class="anchor"></a>Simple repeat content</h2>
 <p>Horizon plots are also useful to plot genomic data, such as simple repeat content along the human genome (source: <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?g=rmsk" class="uri">https://genome.ucsc.edu/cgi-bin/hgTrackUi?g=rmsk</a>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmsk</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmsk</span><span class="op">)</span>
 
 
 <span class="va">cutpoint_tab</span> <span class="op">&lt;-</span> <span class="va">rmsk</span> <span class="op">%&gt;%</span> 
@@ -207,7 +210,8 @@
 <a href="#average-temperature-in-2000-for-major-us-cities" class="anchor"></a>Average temperature in 2000 for major US cities</h2>
 <p>Changes in the average temperature across several geographic locations can also be condensed in horizon plots. For example, the average temperature during 2000 for major US cities (source: <a href="https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities" class="uri">https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities</a>; order of the states:<a href="https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/" class="uri">https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/</a>):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span>
 
 <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_US</span><span class="op">)</span>
 
@@ -232,14 +236,15 @@
   <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Average daily temperature of major US cities'</span>, 
           <span class="st">'for the year 2000'</span><span class="op">)</span></code></pre></div>
-<p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="576"></p>
+<p><img src="examples_files/figure-html/unnamed-chunk-2-1.png" width="576"></p>
 </div>
 <div id="average-temperature-in-copenhagen" class="section level2">
 <h2 class="hasAnchor">
 <a href="#average-temperature-in-copenhagen" class="anchor"></a>Average temperature in Copenhagen</h2>
 <p>The average daily temperature can also be plotted by year. For example, in Copenhagen:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
 
 <span class="va">cutpoints</span> <span class="op">&lt;-</span> <span class="va">climate_CPH</span>  <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>
@@ -275,7 +280,7 @@
   <span class="fu">xlab</span><span class="op">(</span><span class="st">'Date'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Average daily temperature in Copenhagen'</span>, 
           <span class="st">'from 1995 to 2019'</span><span class="op">)</span></code></pre></div>
-<p><img src="examples_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="examples_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
   </div>
 
