@@ -2,8 +2,11 @@
 * GitHub Actions (ubuntu-20.04): release, devel
 * GitHub Actions (macOS-latest): release
 * GitHub Actions (windows-latest): release
+* R-hub builder (Fedora Linux): devel
+* R-hub builder (Ubuntu Linux): release
+* R-hub builder (Windows): devel
+* win-builder: devel
 * local R installation (macOS): R 4.1.1
-* win-builder (devel)
 
 ## R CMD check results
 
