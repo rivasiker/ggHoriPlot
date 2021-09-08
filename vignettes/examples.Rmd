@@ -28,7 +28,7 @@ library(ggHoriPlot)
 
 ## Peak time of day for activities
 
-Sports and leisure activities happen at different times during the day (sources: https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv
+Sports and leisure activities happen at different times during the day (sources: https://github.com/halhen/viz-pub/blob/master/sports-time-of-day/activity.tsv,
 https://eagereyes.org/blog/2017/joy-plots). Horizon plots can be used to condense this time series data into a highly informative and easily interpretable chart:
 
 ```{r sports_leisure}
