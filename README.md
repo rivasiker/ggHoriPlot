@@ -12,9 +12,9 @@ more about the package in `vignette('ggHoriPlot')`
 
 ## Installation
 
-If you install devtools in your R environment with
-`install.packages("devtools")`, the package can be installed with the
-following command:
+You can install `ggHoriPlot` from CRAN using
+`install.packages("ggHoriPlot")`. You can also install the development
+version of the package with the following command:
 
     devtools::install_github("rivasiker/ggHoriPlot")
 

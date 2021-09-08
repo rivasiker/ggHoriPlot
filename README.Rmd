@@ -22,7 +22,7 @@ This package allows building horizon plots in ggplot2. You can learn more about 
 
 ## Installation
 
-If you install devtools in your R environment with `install.packages("devtools")`, the package can be installed with the following command:
+You can install `ggHoriPlot` from CRAN using `install.packages("ggHoriPlot")`. You can also install the development version of the package with the following command:
 
 ```
 devtools::install_github("rivasiker/ggHoriPlot")
@@ -33,7 +33,6 @@ devtools::install_github("rivasiker/ggHoriPlot")
 Load the libraries:
 
 ```{r libraries, warning=FALSE, message=FALSE}
-
 library(tidyverse)
 library(ggHoriPlot) 
 library(ggthemes)
@@ -43,7 +42,6 @@ library(ggthemes)
 Load the dataset and calculate the cutpoints and origin:
 
 ```{r set}
-
 utils::data(climate_CPH)
 
 cutpoints <- climate_CPH  %>% 
@@ -70,7 +68,6 @@ round(sca, 2) # The horizon scale cutpoints
 Build the horizon plots in `ggplot2` using `geom_horizon()`:
 
 ```{r CPH_climate}
-
 climate_CPH %>% ggplot() +
   geom_horizon(aes(date_mine, 
                    AvgTemperature,
