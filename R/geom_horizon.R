@@ -1,7 +1,19 @@
 
 #' Horizon plots
 #'
-#' This function builds horizon plots in ggplot2.
+#' This function builds horizon plots in ggplot2. It allows for the
+#' customization of the origin and the horizon scale.
+#'
+#' A horizon plot is a special type of area plot in which the original data
+#' is transformed based on an origin and a horizon scale. The data is cut in
+#' different intervals, and the further the data is from the origin, the deeper
+#' its color usually is. All the intervals above the origin are then stacked on
+#' top of one another, keeping the intervals closest to the origin in the bottom
+#' and the furthest away ones on top. Likewise, the intervals below the origin
+#' are normally given a different color palette and they are stacked in a similar
+#' manner in the same area as the intervals above the origin. You can learn more
+#' about how horizon plots are built in \code{vignette('ggHoriPlot')} or at
+#' \url{https://bernatgel.github.io/karyoploter_tutorial/Tutorial/PlotHorizon/PlotHorizon.html}.
 #'
 #' @eval ggplot2:::rd_orientation()
 #'
@@ -46,12 +58,6 @@
 #' # Add cupoints
 #' ggplot(huron) +
 #'   geom_horizon(aes(year, level, fill = ..Cutpoints..)) +
-#'   theme_void() +
-#'   scale_fill_hcl()
-#'
-#' # Reverse negative ranges
-#' ggplot(huron) +
-#'   geom_horizon(aes(year, level, fill = ..Cutpoints..), reverse = TRUE) +
 #'   theme_void() +
 #'   scale_fill_hcl()
 #'
