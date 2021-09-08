@@ -1,0 +1,13 @@
+reference:
+- title: Functions
+  contents:
+  - geom_horizon
+  - scale_fill_hcl
+
+- title: Data
+  contents:
+  - sports_time
+  - COVID
+  - rmsk
+  - climate_US
+  - climate_CPH
