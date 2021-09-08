@@ -41,11 +41,10 @@ stat_horizon <- function(mapping = NULL,
   )
 }
 
-#' @format NULL
-#' @usage NULL
+
 #' @importFrom ggplot2 ggproto Stat
 #' @importFrom glue glue
-#' @export
+#' @noRd
 
 StatHorizon <- ggproto(
   "StatHorizon",
