@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check if a variable is a whole number — is.wholenumber • ggHoriPlot</title>
+<title>Compute the origin and scale of the horizon plot — compute_ori_sca • ggHoriPlot</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Check if a variable is a whole number — is.wholenumber" />
-<meta property="og:description" content="Check if a variable is a whole number" />
+<meta property="og:title" content="Compute the origin and scale of the horizon plot — compute_ori_sca" />
+<meta property="og:description" content="Compute the origin and scale of the horizon plot" />
 
 
 
@@ -126,27 +126,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check if a variable is a whole number</h1>
+    <h1>Compute the origin and scale of the horizon plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/rivasiker/ggHoriPlot/blob/master/R/compute_ori_sca.R'><code>R/compute_ori_sca.R</code></a></small>
-    <div class="hidden name"><code>is.wholenumber.Rd</code></div>
+    <div class="hidden name"><code>compute_ori_sca.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check if a variable is a whole number</p>
+    <p>Compute the origin and scale of the horizon plot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is.wholenumber</span><span class='op'>(</span><span class='va'>x</span>, tol <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>double.eps</span><span class='op'>^</span><span class='fl'>0.5</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>compute_ori_sca</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>origin</span>, <span class='va'>horizonscale</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A number.</p></td>
+      <th>data</th>
+      <td><p>A data frame.</p></td>
     </tr>
     <tr>
-      <th>tol</th>
-      <td><p>Toleration threshold.</p></td>
+      <th>origin</th>
+      <td><p>Origin of the horizon plot. It can either be a string, namely
+<code>"midpoint"</code> (the default), <code>"median"</code>,
+<code>"mean"</code>, <code>"min"</code> or <code>"quantiles"</code>, or a user-specified number.</p></td>
+    </tr>
+    <tr>
+      <th>horizonscale</th>
+      <td><p>Cutpoints of the horizon plot. It can either be an integer
+specifying the number of ranges (default is <code>6</code>),
+or a user-supplied numeric vector with the cutpoints defining the different ranges.</p></td>
     </tr>
     </table>
 
