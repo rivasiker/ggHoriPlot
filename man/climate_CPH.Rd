@@ -15,7 +15,7 @@ A data frame with 9,132 rows and 9 variables:
   \item{Day}{day}
   \item{Year}{year}
   \item{AvgTemperature}{average temperature in Fahrenheit}
-  \item{date_mine}{data in yyy-mm-dd format}
+  \item{date_mine}{data in yyyy-mm-dd format}
 }
 }
 \source{

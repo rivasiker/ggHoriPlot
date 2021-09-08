@@ -81,7 +81,7 @@
 #'   \item{Day}{day}
 #'   \item{Year}{year}
 #'   \item{AvgTemperature}{average temperature in Fahrenheit}
-#'   \item{date_mine}{data in yyy-mm-dd format}
+#'   \item{date_mine}{data in yyyy-mm-dd format}
 #' }
 #' @source \url{https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities}
 "climate_CPH"
