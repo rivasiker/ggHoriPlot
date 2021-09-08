@@ -32,7 +32,6 @@ Sports and leisure activities happen at different times during the day (sources:
 https://eagereyes.org/blog/2017/joy-plots). Horizon plots can be used to condense this time series data into a highly informative and easily interpretable chart:
 
 ```{r sports_leisure}
-
 utils::data(sports_time)
 
 sports_time %>% ggplot() +
@@ -63,7 +62,6 @@ COVID-19 cases were recorded in waves across the world (source: https://www.ecdc
 
 
 ```{r covid_19}
-
 utils::data(COVID)
 
 
@@ -96,7 +94,6 @@ Horizon plots are also useful to plot genomic data, such as simple repeat conten
 
 
 ```{r repeats}
-
 utils::data(rmsk)
 
 
@@ -144,7 +141,6 @@ rmsk %>%
 Changes in the average temperature across several geographic locations can also be condensed in horizon plots. For example, the average temperature during 2000 for major US cities (source: https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities; order of the states:https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/):
 
 ```{r fig.height=15, fig.width=6}
-
 library(ggh4x)
 
 utils::data(climate_US)
@@ -179,7 +175,6 @@ climate_US %>%
 The average daily temperature can also be plotted by year. For example, in Copenhagen:
 
 ```{r}
-
 utils::data(climate_CPH)
 
 cutpoints <- climate_CPH  %>% 

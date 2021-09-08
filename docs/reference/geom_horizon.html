@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Horizon plots — geom_horizon" />
-<meta property="og:description" content="This function builds horizon plots in ggplot2." />
+<meta property="og:description" content="This function builds horizon plots in ggplot2. It allows for the
+customization of the origin and the horizon scale." />
 
 
 
@@ -127,12 +128,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Horizon plots</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rivasiker/ggHoriPlot/blob/master/R/geom_horizon.R'><code>R/geom_horizon.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rivasiker/ggHoriPlot/blob/master/R/geom_horizon.R'><code>R/geom_horizon.R</code></a>, <a href='https://github.com/rivasiker/ggHoriPlot/blob/master/R/stat_horizon.R'><code>R/stat_horizon.R</code></a></small>
     <div class="hidden name"><code>geom_horizon.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function builds horizon plots in ggplot2.</p>
+    <p>This function builds horizon plots in ggplot2. It allows for the
+customization of the origin and the horizon scale.</p>
     </div>
 
     <pre class="usage"><span class='fu'>geom_horizon</span><span class='op'>(</span>
@@ -148,6 +150,22 @@
   reverse <span class='op'>=</span> <span class='cn'>FALSE</span>,
   mirror <span class='op'>=</span> <span class='cn'>FALSE</span>,
   inherit.aes <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+
+<span class='fu'>stat_horizon</span><span class='op'>(</span>
+  mapping <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geom <span class='op'>=</span> <span class='st'>"ribbon"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  <span class='va'>...</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  inherit.aes <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  origin <span class='op'>=</span> <span class='st'>"midpoint"</span>,
+  horizonscale <span class='op'>=</span> <span class='fl'>6</span>,
+  rm.outliers <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  reverse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  mirror <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -235,8 +253,24 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders()</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>geom</th>
+      <td><p>Used geom, default to 'ribbon'</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>A horizon plot is a special type of area plot in which the original data
+is transformed based on an origin and a horizon scale. The data is cut in
+different intervals, and the further the data is from the origin, the deeper
+its color usually is. All the intervals above the origin are then stacked on
+top of one another, keeping the intervals closest to the origin in the bottom
+and the furthest away ones on top. Likewise, the intervals below the origin
+are normally given a different color palette and they are stacked in a similar
+manner in the same area as the intervals above the origin. You can learn more
+about how horizon plots are built in <code><a href='../articles/ggHoriPlot.html'>vignette('ggHoriPlot')</a></code> or at
+<a href='https://bernatgel.github.io/karyoploter_tutorial/Tutorial/PlotHorizon/PlotHorizon.html'>https://bernatgel.github.io/karyoploter_tutorial/Tutorial/PlotHorizon/PlotHorizon.html</a>.</p>
     <h2 class="hasAnchor" id="orientation"><a class="anchor" href="#orientation"></a>Orientation</h2>
 
     
@@ -272,12 +306,6 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
   <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='scale_fill_hcl.html'>scale_fill_hcl</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='geom_horizon-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Reverse negative ranges</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>huron</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_horizon</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>level</span>, fill <span class='op'>=</span> <span class='va'>..Cutpoints..</span><span class='op'>)</span>, reverse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='scale_fill_hcl.html'>scale_fill_hcl</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='geom_horizon-3.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>
   </div>
