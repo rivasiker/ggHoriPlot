@@ -168,6 +168,15 @@ test_that("The processed table has the right dimensions with xend", {
 })
 
 
+test_that("ymin is always 0", {
+  df <- data.frame(x = 1:10,
+                   y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
+
+  p <- ggplot(df, aes(x = x, y = y))+geom_horizon()
+
+  expect_true(all(layer_data(p)$ymin == 0))
+})
+
 test_that("Mirror works", {
   df <- data.frame(x = 1:10,
                    y = c(1, 3, 5, 8, 1, 2, 6, 9, 2, 2))
