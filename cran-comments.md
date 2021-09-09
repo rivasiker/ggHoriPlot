@@ -1,4 +1,11 @@
+## Resubmission
+This is a re-submission. In this version I have:
+
+* Added \value to all .Rd that missed it. 
+* Added missing arguments to the .Rd files.
+
 ## Test environments
+
 * GitHub Actions (ubuntu-20.04): release, devel
 * GitHub Actions (macOS-latest): release
 * GitHub Actions (windows-latest): release
