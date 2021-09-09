@@ -7,7 +7,7 @@
 hcl_generic(reverse, palette, ...)
 }
 \arguments{
-\item{reverse}{Logical, indicating whether the palette should be inversed.}
+\item{reverse}{Logical, indicating whether the palette should be inverted.}
 
 \item{palette}{A character string, indicating the palette to be used.}
 }

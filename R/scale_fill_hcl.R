@@ -3,7 +3,7 @@
 #' General color function
 #' @keywords internal
 #'
-#' @param reverse Logical, indicating whether the palette should be inversed.
+#' @param reverse Logical, indicating whether the palette should be inverted.
 #' @param palette A character string, indicating the palette to be used.
 #'
 #' @return A function, that, given an integer, returns a character vector
