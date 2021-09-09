@@ -6,6 +6,15 @@
 \usage{
 hcl_generic(reverse, palette, ...)
 }
+\arguments{
+\item{reverse}{Logical, indicating whether the palette should be inversed.}
+
+\item{palette}{A character string, indicating the palette to be used.}
+}
+\value{
+A function, that, given an integer, returns a character vector
+of colors of the specified palette.
+}
 \description{
 General color function
 }

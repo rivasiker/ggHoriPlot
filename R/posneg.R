@@ -7,6 +7,13 @@
 #'
 #' @importFrom dplyr as_tibble
 #'
+#' @param y Numeric vector of values to be transformed.
+#' @param origin Numeric origin of the horizon plot.
+#' @param vec Numeric vector of cutpoints.
+#'
+#' @return A data frame, which has been transformed with the supplied
+#' origin and vector of cuts.
+#'
 #' @keywords internal
 
 

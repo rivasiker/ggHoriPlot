@@ -89,7 +89,7 @@ and above \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and c
 calculations (default is \code{FALSE}). @param reverse If \code{TRUE}, the horizon peaks
 for the values below the origin are reversed (default is \code{FALSE}).}
 
-\item{reverse}{\code{TRUE}, the horizon peaks for all the values below the origin
+\item{reverse}{IF \code{TRUE}, the horizon peaks for all the values below the origin
 are reversed (default is \code{FALSE}).}
 
 \item{mirror}{If \code{TRUE}, the horizon peaks for all the values are reversed
@@ -101,6 +101,9 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{geom}{Used geom, default to 'ribbon'}
+}
+\value{
+'ggplot2' layer for building a horizon plot.
 }
 \description{
 This function builds horizon plots in ggplot2. It allows for the

@@ -9,7 +9,11 @@ is.wholenumber(x, tol = .Machine$double.eps^0.5)
 \arguments{
 \item{x}{A number.}
 
-\item{tol}{Toleration threshold.}
+\item{tol}{Tolerance threshold.}
+}
+\value{
+A logical value indicating whether a number is an integer, given
+a certain tolerance threshold.
 }
 \description{
 Check if a variable is a whole number

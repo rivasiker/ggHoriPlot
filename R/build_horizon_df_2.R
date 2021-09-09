@@ -8,6 +8,8 @@ utils::globalVariables(c("ymin", "ymax", "fill", "y", "outlier", "x", "group",
 #' @param data A data frame.
 #' @inheritParams geom_horizon
 #'
+#' @return A data frame transformed for a horizon plot.
+#'
 #' @importFrom dplyr mutate between select transmute bind_cols
 #' @importFrom tidyr pivot_longer starts_with
 #' @importFrom magrittr '%>%'

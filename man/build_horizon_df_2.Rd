@@ -22,11 +22,14 @@ and above \code{quantile(y, 0.75)+1.5*IQR(y)} are excluded from the origin and c
 calculations (default is \code{FALSE}). @param reverse If \code{TRUE}, the horizon peaks
 for the values below the origin are reversed (default is \code{FALSE}).}
 
-\item{reverse}{\code{TRUE}, the horizon peaks for all the values below the origin
+\item{reverse}{IF \code{TRUE}, the horizon peaks for all the values below the origin
 are reversed (default is \code{FALSE}).}
 
 \item{mirror}{If \code{TRUE}, the horizon peaks for all the values are reversed
 (default is \code{FALSE}).}
+}
+\value{
+A data frame transformed for a horizon plot.
 }
 \description{
 Compute group for stat_horizon

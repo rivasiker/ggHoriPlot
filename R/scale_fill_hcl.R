@@ -2,6 +2,13 @@
 
 #' General color function
 #' @keywords internal
+#'
+#' @param reverse Logical, indicating whether the palette should be inversed.
+#' @param palette A character string, indicating the palette to be used.
+#'
+#' @return A function, that, given an integer, returns a character vector
+#' of colors of the specified palette.
+#'
 #' @importFrom grDevices hcl.colors
 
 hcl_generic <- function(reverse, palette, ...) {
@@ -29,6 +36,8 @@ hcl_generic <- function(reverse, palette, ...) {
 #' available palettes can be found by running \code{colorspace::hcl_palettes()}
 #' (default is "RdYlBu").
 #' @param reverse If \code{TRUE}, the order of the colors is reversed (default is \code{FALSE})'
+#'
+#' @return Scale layer for the fill aesthetic.
 #'
 #' @importFrom ggplot2 discrete_scale
 #' @export

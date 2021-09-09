@@ -3,7 +3,10 @@
 #' Check if a variable is a whole number
 #'
 #' @param x A number.
-#' @param tol Toleration threshold.
+#' @param tol Tolerance threshold.
+#'
+#' @return A logical value indicating whether a number is an integer, given
+#' a certain tolerance threshold.
 #'
 #' @keywords internal
 
@@ -15,6 +18,10 @@ is.wholenumber <-
 #'
 #' @param data A data frame.
 #' @inheritParams geom_horizon
+#'
+#' @return A list with two elements: \code{ori}, which represents the numeric
+#' origin of the horizon plot, and \code{vec_cut}, which is a vector with the
+#' cutpoints for the horizon plot.
 #'
 #' @importFrom stats IQR median quantile
 #'

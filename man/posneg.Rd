@@ -6,6 +6,17 @@
 \usage{
 posneg(y, origin, vec)
 }
+\arguments{
+\item{y}{Numeric vector of values to be transformed.}
+
+\item{origin}{Numeric origin of the horizon plot.}
+
+\item{vec}{Numeric vector of cutpoints.}
+}
+\value{
+A data frame, which has been transformed with the supplied
+origin and vector of cuts.
+}
 \description{
 This function calculates the different positive and
 negative boundaries for each data point

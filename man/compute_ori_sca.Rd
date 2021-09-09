@@ -17,6 +17,11 @@ compute_ori_sca(data, origin, horizonscale)
 specifying the number of ranges (default is \code{6}),
 or a user-supplied numeric vector with the cutpoints defining the different ranges.}
 }
+\value{
+A list with two elements: \code{ori}, which represents the numeric
+origin of the horizon plot, and \code{vec_cut}, which is a vector with the
+cutpoints for the horizon plot.
+}
 \description{
 Compute the origin and scale of the horizon plot
 }

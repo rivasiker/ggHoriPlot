@@ -64,6 +64,9 @@ available palettes can be found by running \code{colorspace::hcl_palettes()}
 
 \item{reverse}{If \code{TRUE}, the order of the colors is reversed (default is \code{FALSE})'}
 }
+\value{
+Scale layer for the fill aesthetic.
+}
 \description{
 These functions allow you to specify your own set of mappings from levels in the
 data to aesthetic values.
