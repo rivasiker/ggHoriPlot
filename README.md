@@ -4,6 +4,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rivasiker/ggHoriPlot/actions/workflows/check-standard.yaml)
+[![CRAN](https://www.r-pkg.org/badges/version/ggHoriPlot)](https://cran.r-project.org/web/packages/ggHoriPlot/index.html)
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggHoriPlot)](https://cran.r-project.org/web/packages/ggHoriPlot/index.html)
 [![codecov](https://codecov.io/gh/rivasiker/ggHoriPlot/branch/master/graph/badge.svg?token=8V5E63YVM2)](https://codecov.io/gh/rivasiker/ggHoriPlot)
 <!-- badges: end -->
 
