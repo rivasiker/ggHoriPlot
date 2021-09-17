@@ -20,13 +20,20 @@ knitr::opts_chunk$set(
 [![codecov](https://codecov.io/gh/rivasiker/ggHoriPlot/branch/master/graph/badge.svg?token=8V5E63YVM2)](https://codecov.io/gh/rivasiker/ggHoriPlot)
 <!-- badges: end -->
 
-This package allows building horizon plots in ggplot2. You can learn more about the package in `vignette('ggHoriPlot')`
+This package allows building horizon plots in ggplot2. You can learn more about the package in `vignette("ggHoriPlot")`
 
 ## Installation
 
-You can install `ggHoriPlot` from CRAN using `install.packages("ggHoriPlot")`. You can also install the development version of the package with the following command:
+You can install `ggHoriPlot` from CRAN via:
 
 ``` r
+install.packages("ggHoriPlot")
+```
+
+You can also install the development version from GitHub of the package with the following command:
+
+``` r
+#install.packages("devtools")
 devtools::install_github("rivasiker/ggHoriPlot")
 ```
 
