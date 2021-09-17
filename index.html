@@ -91,24 +91,28 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>This package allows building horizon plots in ggplot2. You can learn more about the package in <code><a href="articles/ggHoriPlot.html">vignette('ggHoriPlot')</a></code></p>
+<p>This package allows building horizon plots in ggplot2. You can learn more about the package in <code><a href="articles/ggHoriPlot.html">vignette("ggHoriPlot")</a></code></p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install <code>ggHoriPlot</code> from CRAN using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ggHoriPlot")</a></code>. You can also install the development version of the package with the following command:</p>
+<p>You can install <code>ggHoriPlot</code> from CRAN via:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rivasiker/ggHoriPlot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggHoriPlot"</span><span class="op">)</span></code></pre></div>
+<p>You can also install the development version from GitHub of the package with the following command:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rivasiker/ggHoriPlot"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
 <p>Load the libraries:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rivasiker.github.io/ggHoriPlot/">ggHoriPlot</a></span><span class="op">)</span> 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></code></pre></div>
 <p>Load the dataset and calculate the cutpoints and origin:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">climate_CPH</span><span class="op">)</span>
 
 <span class="va">cutpoints</span> <span class="op">&lt;-</span> <span class="va">climate_CPH</span>  <span class="op">%&gt;%</span> 
@@ -132,7 +136,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sca</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># The horizon scale cutpoints</span>
 <span class="co">#&gt; [1] -12.11  -5.88   0.35  12.81  19.05  25.28</span></code></pre></div>
 <p>Build the horizon plots in <code>ggplot2</code> using <code><a href="reference/geom_horizon.html">geom_horizon()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">climate_CPH</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/geom_horizon.html">geom_horizon</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date_mine</span>, 
                    <span class="va">AvgTemperature</span>,
