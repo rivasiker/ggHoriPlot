@@ -18,7 +18,9 @@ You can install `ggHoriPlot` from CRAN using
 `install.packages("ggHoriPlot")`. You can also install the development
 version of the package with the following command:
 
-    devtools::install_github("rivasiker/ggHoriPlot")
+``` r
+devtools::install_github("rivasiker/ggHoriPlot")
+```
 
 ## Basic example
 
