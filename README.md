@@ -10,7 +10,7 @@
 <!-- badges: end -->
 
 This package allows building horizon plots in ggplot2. You can learn
-more about the package in `vignette("ggHoriPlot")`
+more about the package in `vignette("ggHoriPlot")`.
 
 ## Installation
 
@@ -20,7 +20,7 @@ You can install `ggHoriPlot` from CRAN via:
 install.packages("ggHoriPlot")
 ```
 
-You can also install the development version from GitHub of the package
+You can also install the development version of the package from GitHub
 with the following command:
 
 ``` r
