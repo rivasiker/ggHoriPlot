@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ggHoriPlot: build horizon plots in ggplot2 <img src='man/images/sticker_ggHoriPlot.png' align="right" height="180" >
+# ggHoriPlot: horizon plots in ggplot2 <img src='man/images/sticker_ggHoriPlot.png' align="right" height="180" >
 
 
 <!-- badges: start -->
