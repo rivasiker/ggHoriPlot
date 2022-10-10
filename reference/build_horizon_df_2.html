@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggHoriPlot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
       </span>
     </div>
 
@@ -66,36 +66,49 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">build_horizon_df_2</span><span class="op">(</span><span class="va">data</span>, <span class="va">origin</span>, <span class="va">horizonscale</span>, <span class="va">rm.outliers</span>, <span class="va">reverse</span>, <span class="va">mirror</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_horizon_df_2</span><span class="op">(</span><span class="va">data</span>, <span class="va">origin</span>, <span class="va">horizonscale</span>, <span class="va">rm.outliers</span>, <span class="va">reverse</span>, <span class="va">mirror</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>origin</dt>
 <dd><p>Origin of the horizon plot. It can either be a string, namely
 <code>"midpoint"</code> (the default), <code>"median"</code>,
 <code>"mean"</code>, <code>"min"</code> or <code>"quantiles"</code>, or a user-specified number.</p></dd>
+
+
 <dt>horizonscale</dt>
 <dd><p>Cutpoints of the horizon plot. It can either be an integer
 specifying the number of ranges (default is <code>6</code>),
 or a user-supplied numeric vector with the cutpoints defining the different ranges.</p></dd>
+
+
 <dt>rm.outliers</dt>
 <dd><p>If <code>TRUE</code>, all the values below <code>quantile(y, 0.25)-1.5*IQR(y)</code>
 and above <code>quantile(y, 0.75)+1.5*IQR(y)</code> are excluded from the origin and cutpoint
 calculations (default is <code>FALSE</code>). @param reverse If <code>TRUE</code>, the horizon peaks
 for the values below the origin are reversed (default is <code>FALSE</code>).</p></dd>
+
+
 <dt>reverse</dt>
 <dd><p>IF <code>TRUE</code>, the horizon peaks for all the values below the origin
 are reversed (default is <code>FALSE</code>).</p></dd>
+
+
 <dt>mirror</dt>
 <dd><p>If <code>TRUE</code>, the horizon peaks for all the values are reversed
 (default is <code>FALSE</code>).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame transformed for a horizon plot.</p>
+    
+
+<p>A data frame transformed for a horizon plot.</p>
     </div>
 
   </div>
@@ -110,7 +123,7 @@ are reversed (default is <code>FALSE</code>).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
