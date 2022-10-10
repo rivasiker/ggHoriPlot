@@ -45,7 +45,7 @@ stat_horizon <- function(mapping = NULL,
 
 #' @importFrom ggplot2 ggproto Stat
 #' @importFrom glue glue
-#' @importFrom tibble tibble
+#' @importFrom dplyr tibble
 #' @noRd
 
 StatHorizon <- ggproto(
