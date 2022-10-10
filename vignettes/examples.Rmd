@@ -141,7 +141,7 @@ rmsk %>%
 Changes in the average temperature across several geographic locations can also be condensed in horizon plots. For example, the average temperature during 2000 for major US cities (source: https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities; order of the states:https://benschmidt.org/2014/06/05/optimally-ordering-geographical-entities-in-linear-space/):
 
 ```{r fig.height=15, fig.width=6}
-library(ggh4x)
+
 
 utils::data(climate_US)
 
@@ -151,7 +151,7 @@ climate_US %>%
   geom_horizon(aes(date_mine, 
                    AvgTemperature), rm.outliers = T) +
   scale_fill_hcl(palette = 'RdBu', reverse = T) +
-  facet_nested(State+City~.) +
+  facet_grid(State+City~.) +
   theme_bw() +
   theme(
     panel.spacing.y=unit(0, "lines"),

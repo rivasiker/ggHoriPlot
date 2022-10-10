@@ -45,6 +45,7 @@ stat_horizon <- function(mapping = NULL,
 
 #' @importFrom ggplot2 ggproto Stat
 #' @importFrom glue glue
+#' @importFrom tibble tibble
 #' @noRd
 
 StatHorizon <- ggproto(
@@ -74,14 +75,14 @@ StatHorizon <- ggproto(
               "Computation failed in `{ggplot2:::snake_class(self)}()`:\n{e$message}"
             )
           )
-          ggplot2:::new_data_frame()
+          tibble()
         }
       )
     })
   },
-
   required_aes = c("x", "y"),
   optional_aes = c("xend"),
+  dropped_aes = c("y", "xend"),
   default_aes = aes(fill = ..Categories.., group = ..group..)
 
 )

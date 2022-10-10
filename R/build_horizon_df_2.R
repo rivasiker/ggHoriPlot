@@ -95,7 +95,6 @@ build_horizon_df_2 <- function(data, origin, horizonscale,
       )
   }
 
-
   data
 }
 
