@@ -14,7 +14,7 @@ Description: A user-friendly, highly customizable R package for building
 License: GPL-3
 URL: https://rivasiker.github.io/ggHoriPlot/,
         https://github.com/rivasiker/ggHoriPlot,
-        https://cran.r-project.org/web/packages/ggHoriPlot/index.html
+        https://CRAN.R-project.org/package=ggHoriPlot
 BugReports: https://github.com/rivasiker/ggHoriPlot/issues
 Depends: ggplot2, R (>= 2.10)
 Imports: dplyr, glue, magrittr, stringr, tidyr
