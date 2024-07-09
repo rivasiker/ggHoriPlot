@@ -1,63 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/examples.html</loc>
-  </url>
-  <url>
-    <loc>/articles/ggHoriPlot.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/COVID.html</loc>
-  </url>
-  <url>
-    <loc>/reference/build_horizon_df_2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/climate_CPH.html</loc>
-  </url>
-  <url>
-    <loc>/reference/climate_US.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compute_ori_sca.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_horizon.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hcl_generic.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is.wholenumber.html</loc>
-  </url>
-  <url>
-    <loc>/reference/posneg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rmsk.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scale_fill_hcl.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sports_time.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/examples.html</loc></url>
+<url><loc>/articles/ggHoriPlot.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/COVID.html</loc></url>
+<url><loc>/reference/build_horizon_df_2.html</loc></url>
+<url><loc>/reference/climate_CPH.html</loc></url>
+<url><loc>/reference/climate_US.html</loc></url>
+<url><loc>/reference/compute_ori_sca.html</loc></url>
+<url><loc>/reference/geom_horizon.html</loc></url>
+<url><loc>/reference/hcl_generic.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is.wholenumber.html</loc></url>
+<url><loc>/reference/posneg.html</loc></url>
+<url><loc>/reference/rmsk.html</loc></url>
+<url><loc>/reference/scale_fill_hcl.html</loc></url>
+<url><loc>/reference/sports_time.html</loc></url>
 </urlset>
+
