@@ -45,6 +45,6 @@ hcl_generic <- function(reverse, palette, ...) {
 scale_fill_hcl <- function(..., palette = "RdYlBu", reverse = FALSE) {
 
   pal <- hcl_generic(reverse, palette)
-  discrete_scale("fill", 'hcl', palette = pal, ...)
+  discrete_scale("fill", palette = pal, ...)
 
 }
